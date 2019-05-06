@@ -20,11 +20,20 @@ namespace RazorPagesMovie.Pages.Movies
 
         public IActionResult OnGet()
         {
+                Options = _context.Genre.Select(a => 
+                                  new SelectListItem 
+                                  {
+                                      Value = a.ID.ToString(),
+                                      Text =  a.Name
+                                  }).ToList();
+            
             return Page();
         }
 
         [BindProperty]
         public Movie Movie { get; set; }
+
+        public List<SelectListItem> Options { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
