@@ -20,7 +20,13 @@ namespace IdentityServerAspNetIdentity
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("api1", "My API #1")
+                new ApiResource
+                {
+                    Name = "user.management.api",
+                    DisplayName = "User Management Api",
+                    
+                }
+                
             };
 
 
@@ -36,7 +42,7 @@ namespace IdentityServerAspNetIdentity
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
 
-                    AllowedScopes = { "api1" }
+                    AllowedScopes = { "user.management.api" }
                 },
 
                 // MVC client using code flow + pkce
@@ -55,7 +61,7 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1" }
+                    AllowedScopes = { "openid", "profile", "user.management.api" }
                 },
 
                 // SPA client using code flow + pkce
@@ -80,7 +86,7 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
                     AllowedCorsOrigins = { "http://localhost:5003" },
 
-                    AllowedScopes = { "openid", "profile", "api1" }
+                    AllowedScopes = { "openid", "profile", "user.management.api" }
                 }
             };
     }

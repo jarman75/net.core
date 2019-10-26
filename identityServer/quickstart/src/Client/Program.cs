@@ -26,7 +26,7 @@ namespace Client
                 ClientId = "client",
                 ClientSecret = "511536EF-F270-4058-80CA-1C89C192F69A", //"secret",
 
-                Scope = "api1"
+                Scope = "user.management.api"
             });
 
             if (tokenResponse.IsError)

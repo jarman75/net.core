@@ -44,13 +44,16 @@ namespace IdentityServerAspNetIdentity
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>                
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
+            services.AddLocalApiAuthentication();
+
+
             var builder = services.AddIdentityServer(options =>
                 {
                     options.Events.RaiseErrorEvents = true;

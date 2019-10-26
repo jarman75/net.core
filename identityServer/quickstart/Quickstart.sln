@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B7A6E764-D281-4102-821F-36F0E460108E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "src\IdentityServer\IdentityServer.csproj", "{C25CC201-3153-4BC0-AE68-CA6D31B7CAC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "src\IdentityServer\IdentityServer.csproj", "{C25CC201-3153-4BC0-AE68-CA6D31B7CAC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{C9379658-1894-4447-AB78-B16F01FCD3E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User.Management.Api", "src\User.Management.Api\User.Management.Api.csproj", "{C9379658-1894-4447-AB78-B16F01FCD3E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "src\Client\Client.csproj", "{A15CEFF0-599D-4B8F-8399-83F21DA6D2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "src\Client\Client.csproj", "{A15CEFF0-599D-4B8F-8399-83F21DA6D2C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMvc", "src\AppMvc\AppMvc.csproj", "{4963E072-D56F-4B51-B0C0-899B3B989E96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppMvc", "src\AppMvc\AppMvc.csproj", "{4963E072-D56F-4B51-B0C0-899B3B989E96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{38905714-B095-4958-A67E-AC5D818F7750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{38905714-B095-4958-A67E-AC5D818F7750}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C25CC201-3153-4BC0-AE68-CA6D31B7CAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -89,11 +86,17 @@ Global
 		{38905714-B095-4958-A67E-AC5D818F7750}.Release|x86.ActiveCfg = Release|Any CPU
 		{38905714-B095-4958-A67E-AC5D818F7750}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C25CC201-3153-4BC0-AE68-CA6D31B7CAC5} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{C9379658-1894-4447-AB78-B16F01FCD3E1} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{A15CEFF0-599D-4B8F-8399-83F21DA6D2C1} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{4963E072-D56F-4B51-B0C0-899B3B989E96} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{38905714-B095-4958-A67E-AC5D818F7750} = {B7A6E764-D281-4102-821F-36F0E460108E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {595BF853-972B-46C9-8266-3C5FDE633B0B}
 	EndGlobalSection
 EndGlobal
