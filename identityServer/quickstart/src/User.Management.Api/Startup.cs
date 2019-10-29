@@ -31,16 +31,18 @@ namespace User.Management.Api
             {
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
-                options.Audience = "user.management.api";
+                
+                options.Audience = "auth";
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+            //Identity
+            ////services.AddDbContext<ApplicationDbContext>(options =>
+            ////    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            ////services.AddIdentity<ApplicationUser, IdentityRole>()
+            ////    .AddEntityFrameworkStores<ApplicationDbContext>()
+            ////    .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

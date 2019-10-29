@@ -45,7 +45,7 @@ namespace AppMvc
 
                     options.SaveTokens = true;
 
-                    //options.Scope.Add("user.management.api");
+                    options.Scope.Add("auth");
                     options.Scope.Add("offline_access");
                 });
         }

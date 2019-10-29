@@ -22,7 +22,7 @@ namespace IdentityServerAspNetIdentity
             {
                 new ApiResource
                 {
-                    Name = "user.management.api",
+                    Name = "auth",
                     DisplayName = "User Management Api",
                     
                 }
@@ -42,7 +42,7 @@ namespace IdentityServerAspNetIdentity
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
 
-                    AllowedScopes = { "user.management.api" }
+                    AllowedScopes = { "auth" }
                 },
 
                 // MVC client using code flow + pkce
@@ -61,7 +61,7 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "user.management.api" }
+                    AllowedScopes = { "openid", "profile", "auth" }
                 },
 
                 // SPA client using code flow + pkce
@@ -86,7 +86,7 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
                     AllowedCorsOrigins = { "http://localhost:5003" },
 
-                    AllowedScopes = { "openid", "profile", "user.management.api" }
+                    AllowedScopes = { "openid", "profile", "auth" }
                 }
             };
     }
