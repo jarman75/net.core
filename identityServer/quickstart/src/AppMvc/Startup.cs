@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +48,9 @@ namespace AppMvc
 
                     options.Scope.Add("api1");
                     options.Scope.Add("offline_access");
+                    options.Scope.Add("roles");
+                    
+                    
                 });
         }
 

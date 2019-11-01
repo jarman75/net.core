@@ -14,14 +14,16 @@ namespace IdentityServerAspNetIdentity
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()                                
+                new IdentityResources.Profile(),                
+                
             };
 
 
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("api1", "my api")                                
+                new ApiResource("api1", "my api"),                                
+                new ApiResource("roles", "my Roles", new [] {"role"})
             };
 
 
@@ -37,7 +39,7 @@ namespace IdentityServerAspNetIdentity
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
 
-                    AllowedScopes = { "api1" }
+                    AllowedScopes = { "api1", "roles" }
                 },
 
                 // MVC client using code flow + pkce
@@ -60,7 +62,7 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1" }
+                    AllowedScopes = { "openid", "profile", "api1", "roles" }
 
                     
                 },
@@ -87,7 +89,7 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
                     AllowedCorsOrigins = { "http://localhost:5003" },
 
-                    AllowedScopes = { "openid", "profile", "api1" }
+                    AllowedScopes = { "openid", "profile", "api1", "roles" }
                 }
             };
     }

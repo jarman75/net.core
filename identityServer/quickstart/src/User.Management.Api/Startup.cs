@@ -26,6 +26,16 @@ namespace User.Management.Api
         {
             services.AddControllers();
 
+
+            //Identity
+            /* services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()                
+                .AddDefaultTokenProviders();                 */
+
+
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
@@ -33,16 +43,11 @@ namespace User.Management.Api
                 options.RequireHttpsMetadata = false;
                 
                 options.Audience = "api1";                
+                
             });
 
             
-            //Identity
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

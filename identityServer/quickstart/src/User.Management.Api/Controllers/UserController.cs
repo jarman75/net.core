@@ -11,20 +11,23 @@ using User.Management.Api.Models;
 namespace User.Management.Api.Controllers
 {
     [Route("user")]   
-    [Authorize]
+    [Authorize(Roles = "TestRole")]
     public class UserController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserController(UserManager<ApplicationUser> userManager)
+        public UserController() //UserManager<ApplicationUser> userManager)
         {
-            _userManager = userManager;
+            //_userManager = userManager;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string userName)
+        public IActionResult Get(string userName)
         {
-            var user = await _userManager.FindByNameAsync(userName);            
+            var user = new Models.ApplicationUser {
+                UserName = userName                
+            };
+            
             return new JsonResult(user);
         }
     }

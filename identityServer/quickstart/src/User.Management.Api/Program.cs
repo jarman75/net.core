@@ -19,8 +19,7 @@ namespace User.Management.Api
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseUrls("http://localhost:5003");
+                {                    
                     webBuilder.UseStartup<Startup>();
                 });
     }
