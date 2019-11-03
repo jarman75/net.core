@@ -14,13 +14,7 @@ namespace User.Management.Api.Controllers
     [Authorize(Roles = "TestRole")]
     public class UserController : ControllerBase
     {
-        //private readonly UserManager<ApplicationUser> _userManager;
-
-        public UserController() //UserManager<ApplicationUser> userManager)
-        {
-            //_userManager = userManager;
-        }
-
+        
         [HttpGet]
         public IActionResult Get(string userName)
         {

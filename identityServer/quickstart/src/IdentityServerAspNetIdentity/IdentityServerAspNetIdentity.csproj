@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Migrations\20191024231519_initial_database.cs" />
     <Compile Remove="Migrations\20191024231519_initial_database.Designer.cs" />

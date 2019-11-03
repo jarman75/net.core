@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppMvc", "src\AppMvc\AppMvc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{38905714-B095-4958-A67E-AC5D818F7750}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApp", "src\AdminApp\AdminApp.csproj", "{789AE827-DB1C-4EDF-B15D-210968175D22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,18 @@ Global
 		{38905714-B095-4958-A67E-AC5D818F7750}.Release|x64.Build.0 = Release|Any CPU
 		{38905714-B095-4958-A67E-AC5D818F7750}.Release|x86.ActiveCfg = Release|Any CPU
 		{38905714-B095-4958-A67E-AC5D818F7750}.Release|x86.Build.0 = Release|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Debug|x64.Build.0 = Debug|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Debug|x86.Build.0 = Debug|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Release|x64.ActiveCfg = Release|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Release|x64.Build.0 = Release|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Release|x86.ActiveCfg = Release|Any CPU
+		{789AE827-DB1C-4EDF-B15D-210968175D22}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +94,7 @@ Global
 		{A15CEFF0-599D-4B8F-8399-83F21DA6D2C1} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{4963E072-D56F-4B51-B0C0-899B3B989E96} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{38905714-B095-4958-A67E-AC5D818F7750} = {B7A6E764-D281-4102-821F-36F0E460108E}
+		{789AE827-DB1C-4EDF-B15D-210968175D22} = {B7A6E764-D281-4102-821F-36F0E460108E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {595BF853-972B-46C9-8266-3C5FDE633B0B}

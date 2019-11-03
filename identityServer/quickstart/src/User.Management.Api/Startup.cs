@@ -25,16 +25,7 @@ namespace User.Management.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-
-            //Identity
-            /* services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()                
-                .AddDefaultTokenProviders();                 */
-
 
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
