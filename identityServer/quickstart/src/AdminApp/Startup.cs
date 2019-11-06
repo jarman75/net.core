@@ -37,7 +37,8 @@ namespace AdminApp
             .AddCookie("Cookies")
             .AddOpenIdConnect("oidc", options =>
             {
-                options.Authority = "http://localhost:5000";
+                //options.Authority = "http://localhost:5000";
+                options.Authority = "http://192.168.1.216:5000";
                 options.RequireHttpsMetadata = false;
 
                 options.ClientId = "blazor";
