@@ -92,30 +92,7 @@ namespace IdentityServerAspNetIdentity
                     
                 },
 
-                // SPA client using code flow + pkce
-                new Client
-                {
-                    ClientId = "spa",
-                    ClientName = "SPA Client",
-                    ClientUri = "http://identityserver.io",
-
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    RequireClientSecret = false,
-
-                    RedirectUris =
-                    {
-                        "http://localhost:5003/index.html",
-                        "http://localhost:5003/callback.html",
-                        "http://localhost:5003/silent.html",
-                        "http://localhost:5003/popup.html",
-                    },
-
-                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
-                    AllowedCorsOrigins = { "http://localhost:5003" },
-
-                    AllowedScopes = { "openid", "profile", "api1", "roles" }
-                }
+                
             };
     }
 }
