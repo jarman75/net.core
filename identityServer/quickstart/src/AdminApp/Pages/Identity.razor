@@ -13,12 +13,20 @@ Welcome to your new app.
     private async Task LogUsername()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        
         var user = authState.User;
 
         if (user.Identity.IsAuthenticated)
-        {
+        {            
             
             Console.WriteLine($"{user.Identity.Name} is authenticated.");
+
+            foreach (var claim in user.Claims) 
+            {
+                Console.WriteLine(claim.Type);
+                Console.WriteLine(claim.Value);
+            }
+            
         }
         else
         {
