@@ -1,7 +1,28 @@
 @page "/Identity"
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-<h1>Token information</h1>
+<h1>Hello, world!</h1>
 
-<p>Token properties.</p>
+Welcome to your new app.
 
 
+<button @onclick="@LogUsername">Write user info to console</button>
+
+@code {
+
+    private async Task LogUsername()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            
+            Console.WriteLine($"{user.Identity.Name} is authenticated.");
+        }
+        else
+        {
+            Console.WriteLine("The user is NOT authenticated.");
+        }
+    }
+}

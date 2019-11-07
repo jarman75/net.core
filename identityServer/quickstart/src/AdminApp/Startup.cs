@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using AdminApp.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace AdminApp
 {
@@ -29,6 +30,7 @@ namespace AdminApp
         public void ConfigureServices(IServiceCollection services)
         {
             
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -37,14 +39,15 @@ namespace AdminApp
             .AddCookie("Cookies")
             .AddOpenIdConnect("oidc", options =>
             {
-                //options.Authority = "http://localhost:5000";
-                options.Authority = "http://192.168.1.216:5000";
+                options.Authority = "http://localhost:5000";
+                //options.Authority = "http://192.168.1.216:5000";
                 options.RequireHttpsMetadata = false;
 
                 options.ClientId = "blazor";
                 options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0";
                 options.ResponseType = "code";
                 options.SaveTokens = true;
+                
 
                 options.Scope.Add("api1");
                 options.Scope.Add("offline_access");
@@ -54,14 +57,20 @@ namespace AdminApp
             services.AddControllersWithViews(options =>
             {
                var policy = new AuthorizationPolicyBuilder()
-                   .RequireAuthenticatedUser()
+                   .RequireAuthenticatedUser()                                      
                    .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
-            });
+                
+            }); 
                         
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            
+            // HttpContextAccessor
+            services.AddHttpContextAccessor();
+            services.AddScoped<HttpContextAccessor>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,14 +91,17 @@ namespace AdminApp
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseAuthorization();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
 
+            
         }
     }
 }
