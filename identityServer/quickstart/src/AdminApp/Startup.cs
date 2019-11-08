@@ -13,6 +13,7 @@ using AdminApp.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Http;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace AdminApp
 {
@@ -29,7 +30,7 @@ namespace AdminApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddAuthentication(options =>
             {
@@ -64,7 +65,8 @@ namespace AdminApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            
+            services.AddSingleton<TokenContainer>();
+
             // HttpContextAccessor
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();

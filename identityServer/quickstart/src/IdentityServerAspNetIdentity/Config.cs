@@ -53,6 +53,8 @@ namespace IdentityServerAspNetIdentity
                     RequireConsent = false,
                     ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
 
+                    
+
                     //where to redirect to after login
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
                     
@@ -77,6 +79,9 @@ namespace IdentityServerAspNetIdentity
                     RequirePkce = true,
                     RequireConsent = false,
                     ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+
+                    //AlwaysSendClientClaims = true,
+                    //AlwaysIncludeUserClaimsInIdToken = true,                    
 
                     //where to redirect to after login
                     RedirectUris = { "http://localhost:5004/signin-oidc" },

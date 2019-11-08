@@ -16,12 +16,16 @@ namespace AdminApp.Data
             _httpContextAccessor = httpContextAccessor;
         }
 
-        protected async Task AddRequestHeaders(HttpClient httpClient)
+        public async Task AddRequestHeaders(HttpClient httpClient)
         {
             
             var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+            //var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("id_token");
+
+            var data = _httpContextAccessor.HttpContext.User;
+
             httpClient.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("application/json"));
+            new MediaTypeWithQualityHeaderValue("application/json"));            
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
     }

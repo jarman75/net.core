@@ -1,32 +1,39 @@
 @page "/Identity"
+@using AdminApp.Data
+@inject TokenContainer TokenContainer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<h1>Hello, world!</h1>
+<h1>Token Data</h1>
 
-Welcome to your new app.
-
-
+<button @onclick="@TokenData">Get Token Data</button>
 <button @onclick="@LogUsername">Write user info to console</button>
 
 @code {
 
+    private async Task TokenData()
+    {
+        var client = new HttpClient();
+        await TokenContainer.AddRequestHeaders(client);
+                
+    }
+
     private async Task LogUsername()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        
+
         var user = authState.User;
 
         if (user.Identity.IsAuthenticated)
-        {            
-            
+        {
+
             Console.WriteLine($"{user.Identity.Name} is authenticated.");
 
-            foreach (var claim in user.Claims) 
+            foreach (var claim in user.Claims)
             {
                 Console.WriteLine(claim.Type);
                 Console.WriteLine(claim.Value);
             }
-            
+
         }
         else
         {

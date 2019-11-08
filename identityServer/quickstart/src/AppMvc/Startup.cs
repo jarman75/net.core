@@ -27,7 +27,7 @@ namespace AppMvc
         {
             services.AddControllersWithViews();
 
-            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;            
 
             services.AddAuthentication(options =>
             {
@@ -38,7 +38,7 @@ namespace AppMvc
                 .AddOpenIdConnect("oidc", options =>
                 {
                     options.Authority = "http://localhost:5000";
-                    options.RequireHttpsMetadata = false;
+                    options.RequireHttpsMetadata = true;//false;
 
                     options.ClientId = "mvc";
                     options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0"; 
