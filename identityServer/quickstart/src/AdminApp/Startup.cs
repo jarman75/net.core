@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
+using System.Net.Http;
 
 namespace AdminApp
 {
@@ -32,6 +34,9 @@ namespace AdminApp
         {
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
+
+            // ******
+            // BLAZOR COOKIE Auth Code (begin)
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -43,14 +48,17 @@ namespace AdminApp
                 options.Authority = "http://localhost:5000";
                 //options.Authority = "http://192.168.1.216:5000";
                 options.RequireHttpsMetadata = false;
-
                 options.ClientId = "blazor";
                 options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0";
-                options.ResponseType = "code";
+                options.ResponseType = "code id_token";                
+                
                 options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+
                 options.Scope.Add("api1");
                 options.Scope.Add("offline_access");
                 options.Scope.Add("roles");
+                //options.ClaimActions.MapJsonKey("website","website");
             });
 
             services.AddControllersWithViews(options =>
@@ -60,16 +68,18 @@ namespace AdminApp
                    .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
                 
-            }); 
-                        
-            services.AddRazorPages();
-            services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<TokenContainer>();
+            });
+            // BLAZOR COOKIE Auth Code (end)
+            // ******
 
-            // HttpContextAccessor
+            services.AddRazorPages();
+            services.AddServerSideBlazor();            
+            services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<TokenContainer>();            
+                        
             services.AddHttpContextAccessor();
-            services.AddScoped<HttpContextAccessor>();
+            
+            
 
         }
 
@@ -89,14 +99,16 @@ namespace AdminApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseRouting();
+                        
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseRouting();
+            
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });

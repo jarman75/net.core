@@ -1,5 +1,7 @@
 @page "/Identity"
 @using AdminApp.Data
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
 @inject TokenContainer TokenContainer
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -8,32 +10,30 @@
 <button @onclick="@TokenData">Get Token Data</button>
 <button @onclick="@LogUsername">Write user info to console</button>
 
+
 @code {
+
+
+    
 
     private async Task TokenData()
     {
         var client = new HttpClient();
         await TokenContainer.AddRequestHeaders(client);
-                
     }
 
     private async Task LogUsername()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-
         var user = authState.User;
-
         if (user.Identity.IsAuthenticated)
         {
-
             Console.WriteLine($"{user.Identity.Name} is authenticated.");
-
             foreach (var claim in user.Claims)
             {
                 Console.WriteLine(claim.Type);
                 Console.WriteLine(claim.Value);
             }
-
         }
         else
         {

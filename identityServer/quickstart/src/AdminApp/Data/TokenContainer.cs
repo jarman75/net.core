@@ -19,9 +19,9 @@ namespace AdminApp.Data
         public async Task AddRequestHeaders(HttpClient httpClient)
         {
             
-            var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
-            //var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("id_token");
-
+            var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");            
+            var identityToken = await _httpContextAccessor.HttpContext.GetTokenAsync("id_token");
+            
             var data = _httpContextAccessor.HttpContext.User;
 
             httpClient.DefaultRequestHeaders.Accept.Add(
