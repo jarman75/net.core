@@ -17,6 +17,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication;
 using System.Net.Http;
 
+
 namespace AdminApp
 {
     public class Startup
@@ -58,19 +59,26 @@ namespace AdminApp
                 options.Scope.Add("api1");
                 options.Scope.Add("offline_access");
                 options.Scope.Add("roles");
-                //options.ClaimActions.MapJsonKey("website","website");
+                //options.ClaimActions.MapJsonKey("role","role");
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters {
+                    NameClaimType = "name",
+                    RoleClaimType = "role", 
+                                                           
+                };
             });
 
-            services.AddControllersWithViews(options =>
+            services.AddMvcCore(options =>
             {
                var policy = new AuthorizationPolicyBuilder()
-                   .RequireAuthenticatedUser()                                      
+                   .RequireAuthenticatedUser()                                                         
                    .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
                 
             });
             // BLAZOR COOKIE Auth Code (end)
             // ******
+
+            
 
             services.AddRazorPages();
             services.AddServerSideBlazor();            
@@ -107,13 +115,14 @@ namespace AdminApp
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllers();
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
+                //endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
 
             
         }
+        
     }
 }

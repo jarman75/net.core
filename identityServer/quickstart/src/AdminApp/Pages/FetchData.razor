@@ -1,9 +1,14 @@
 ﻿@page "/fetchdata"
-@attribute [Authorize (Roles = "TestRole")]
+@attribute [Authorize]
 @using AdminApp.Data
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject WeatherForecastService ForecastService
 
 <h1>Weather forecast</h1>
+
+<AuthorizeView  Roles="TestRole">
+<p>You can only see this if you're an admin or superuser.</p>
 
 <p>This component demonstrates fetching data from a service.</p>
 
@@ -35,6 +40,7 @@ else
         </tbody>
     </table>
 }
+</AuthorizeView>
 
 @code {
     WeatherForecast[] forecasts;
@@ -43,4 +49,5 @@ else
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
+    
 }

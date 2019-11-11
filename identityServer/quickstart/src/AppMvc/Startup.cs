@@ -1,3 +1,4 @@
+using System.Buffers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -27,7 +28,8 @@ namespace AppMvc
         {
             services.AddControllersWithViews();
 
-            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;            
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+            //JwtSecurityTokenHandler.DefaultMapInboundClaims = false;            
 
             services.AddAuthentication(options =>
             {
@@ -41,11 +43,21 @@ namespace AppMvc
                     options.RequireHttpsMetadata = false;
                     options.ClientId = "mvc";
                     options.ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0"; 
-                    options.ResponseType = "code";
+                    options.ResponseType = "code id_token";
+                    
                     options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+                    
                     options.Scope.Add("api1");
                     options.Scope.Add("offline_access");
-                    options.Scope.Add("roles");                    
+                    options.Scope.Add("roles");  
+                    
+                    options.ClaimActions.MapJsonKey("website","website");
+
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters {
+                        NameClaimType = "name",
+                        RoleClaimType = "role",
+                    };                  
                     
                 });
         }
