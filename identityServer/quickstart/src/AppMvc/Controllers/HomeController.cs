@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Net;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Authentication;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppMvc.Controllers
 {
@@ -37,6 +39,7 @@ namespace AppMvc.Controllers
             return SignOut("Cookies", "oidc");
         }
 
+        //[Authorize(Roles = "TestRole")]
         public async Task<IActionResult> CallApi()
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");

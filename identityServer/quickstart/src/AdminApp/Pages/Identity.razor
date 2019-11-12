@@ -29,6 +29,10 @@
         if (user.Identity.IsAuthenticated)
         {
             Console.WriteLine($"{user.Identity.Name} is authenticated.");
+            Console.WriteLine($"Role 'TestRole' {user.IsInRole("TestRole")}");
+            Console.WriteLine($"Role 'TESTROLE' {user.IsInRole("TESTROLE")}");
+            Console.WriteLine($"Role 'TestUser' {user.IsInRole("TestUser")}");
+
             foreach (var claim in user.Claims)
             {
                 Console.WriteLine(claim.Type);
