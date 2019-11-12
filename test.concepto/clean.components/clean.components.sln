@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{845554B1-59FB-419D-9C5C-A920A8A5B0EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test.user.component", "src\test.user.component\test.user.component.csproj", "{E7A4AC68-A7EE-414B-92A7-660D13D78FF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "src\Tests\Tests.csproj", "{E7A4AC68-A7EE-414B-92A7-660D13D78FF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User.Domain", "src\User.Domain\User.Domain.csproj", "{E15D363C-FCFA-4E1E-B301-AE64C6E0982F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{E15D363C-FCFA-4E1E-B301-AE64C6E0982F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.DataAccess", "src\User.DataAccess\User.DataAccess.csproj", "{63053D6C-D0E9-4A8E-A19F-01D297D441E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{63053D6C-D0E9-4A8E-A19F-01D297D441E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "User.Application", "src\User.Application\User.Application.csproj", "{DBC82E1A-9438-420B-B287-0E3DD3F0D144}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.", "src\Application\Application.csproj", "{DBC82E1A-9438-420B-B287-0E3DD3F0D144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
