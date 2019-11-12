@@ -44,6 +44,9 @@ namespace AppMvc.Controllers
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");
 
+            
+            var isRole = this.HttpContext.User.IsInRole("TestRole");
+            
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             var content = await client.GetStringAsync("http://localhost:5001/identity");

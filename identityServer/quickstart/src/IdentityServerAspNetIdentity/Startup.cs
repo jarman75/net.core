@@ -62,7 +62,7 @@ namespace IdentityServerAspNetIdentity
                     options.Events.RaiseInformationEvents = true;
                     options.Events.RaiseFailureEvents = true;
                     options.Events.RaiseSuccessEvents = true;
-                })
+                })                
                 .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
                 .AddInMemoryClients(Config.Clients)
@@ -91,7 +91,7 @@ namespace IdentityServerAspNetIdentity
                 app.UseDatabaseErrorPage();
             }
 
-            app.UseStaticFiles();
+            app.UseStaticFiles();            
 
             app.UseRouting();
             app.UseIdentityServer();

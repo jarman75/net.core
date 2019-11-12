@@ -47,11 +47,16 @@ namespace IdentityServerAspNetIdentity
                     ClientId = "mvc",
                     ClientName = "MVC Client",
 
-                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    //AllowedGrantTypes = GrantTypes.Hybrid,
+                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
                     
                     //RequirePkce = true,
                     RequireConsent = false,
                     ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+
+                    AlwaysSendClientClaims = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                    AllowAccessTokensViaBrowser = true,
 
                     //where to redirect to after login
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
@@ -62,7 +67,9 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1", "roles" }
+                    AllowedScopes = { "openid", "profile", "api1", "roles" },                    
+                    
+
                 },
 
                 //Blazor client using code flow + pkce
@@ -91,7 +98,8 @@ namespace IdentityServerAspNetIdentity
                     PostLogoutRedirectUris = { "http://localhost:5004/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1", "roles" }
+                    AllowedScopes = { "openid", "profile", "api1", "roles" },
+                    
                     
                 },
 

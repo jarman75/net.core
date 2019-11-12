@@ -56,7 +56,7 @@ namespace AppMvc
 
                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters {
                         NameClaimType = "name",
-                        RoleClaimType = "role",
+                        RoleClaimType = "role",                        
                     };                  
                     
                 });
