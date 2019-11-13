@@ -1,8 +1,9 @@
-﻿using System;
-using Application.Exceptions;
+﻿using Application.Exceptions;
+using System;
 
 namespace Application.Boundaries.GetUserDetails
 {
+    public interface IUseCase : IUseCase<GetUserDetailsInput> { }
     public sealed class GetUserDetailsInput : IUseCaseInput
     {
         public Guid UserId { get; }

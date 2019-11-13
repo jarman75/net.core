@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Domain.Users;
+using System;
 using System.Threading.Tasks;
-using Domain.Users;
 
 namespace Application.Repositories
 {

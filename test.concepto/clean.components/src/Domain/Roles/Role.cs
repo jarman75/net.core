@@ -1,5 +1,5 @@
-using System;
 using Domain.ValueObjects;
+using System;
 
 namespace Domain.Roles
 {

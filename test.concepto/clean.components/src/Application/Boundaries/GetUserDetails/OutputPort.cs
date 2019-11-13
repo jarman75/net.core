@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Domain.Users;
+﻿using Domain.Users;
 using Domain.ValueObjects;
+using System;
+using System.Collections.Generic;
 
 namespace Application.Boundaries.GetUserDetails
 {
+    public interface IOutputPort
+        : IOutputPortStandard<GetUserDetailsOutput>, IOutputPortNotFound
+    { }
+
+
     public sealed class GetUserDetailsOutput : IUseCaseOutput
     {
         public Guid UserId { get; }

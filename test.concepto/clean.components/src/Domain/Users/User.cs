@@ -1,6 +1,6 @@
-using System;
 using Domain.Roles;
 using Domain.ValueObjects;
+using System;
 
 namespace Domain.Users
 {
@@ -15,6 +15,14 @@ namespace Domain.Users
 
         public User()
         {
+            Roles = new RoleCollection();
+        }
+        public User(string id, ShortName name, Email email, Password password)
+        {
+            Id = new Guid(id);
+            Name = name;
+            Email = email;
+            Password = password;
             Roles = new RoleCollection();
         }
 

@@ -3,7 +3,7 @@ using Domain.Users;
 using Domain.ValueObjects;
 
 
-namespace User.Domain
+namespace Domain
 {
     public interface IEntityFactory
     {

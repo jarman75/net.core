@@ -1,5 +1,5 @@
-﻿using System;
-using User.Domain;
+﻿using Domain;
+using System;
 
 namespace Application.Exceptions
 {

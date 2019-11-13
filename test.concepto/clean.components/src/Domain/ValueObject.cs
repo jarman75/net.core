@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace User.Domain
+namespace Domain
 {
     public abstract class ValueObject
     {

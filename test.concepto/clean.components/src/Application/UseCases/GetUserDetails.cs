@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Application.Boundaries.GetUserDetails;
+﻿using Application.Boundaries.GetUserDetails;
 using Application.Repositories;
 using Domain.Users;
+using System.Threading.Tasks;
 
 namespace Application.UseCases
 {

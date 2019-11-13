@@ -1,4 +1,4 @@
-﻿namespace User.Domain
+﻿namespace Domain
 {
     public interface IAggregateRoot : IEntity
     {
