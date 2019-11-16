@@ -22,10 +22,13 @@ namespace WebApi
         {
             
             services.AddControllers().AddControllersAsServices();
+            
             services.AddBusinessExceptionFilter();
+            
             services.AddFeatureFlags(Configuration);
-            services.AddVersioning();
-            services.AddSwagger();
+            //services.AddVersioning();            
+            //services.AddSwagger();
+
             services.AddUseCases();
             services.AddSQLServerPersistence(Configuration);
             services.AddPresenters();

@@ -27,7 +27,7 @@ namespace Insfrastructure.EntityFrameworkDataAccess.Repositories
                 Email = newUser.Email.ToString(),
             };
 
-            await _userManager.CreateAsync(applicationUser);
+            await _userManager.CreateAsync(applicationUser, newUser.Password.ToString());
 
         }
 
@@ -40,7 +40,7 @@ namespace Insfrastructure.EntityFrameworkDataAccess.Repositories
                 throw new UserNotFoundException($"Unable to load user with ID {id}.");
             }
 
-            return new User(user.Id, new Domain.ValueObjects.ShortName(user.UserName), new Domain.ValueObjects.Email(user.Email), new Domain.ValueObjects.Password(user.PasswordHash));
+            return new User(new Guid(user.Id), new Domain.ValueObjects.ShortName(user.UserName), new Domain.ValueObjects.Email(user.Email));
         }
 
         public async Task Update(IUser user)
@@ -55,7 +55,7 @@ namespace Insfrastructure.EntityFrameworkDataAccess.Repositories
 
             applicationUser.Email = updateUser.Email.ToString();
             applicationUser.UserName = updateUser.Name.ToString();
-
+            
             await _userManager.UpdateAsync(applicationUser);
         }
     }

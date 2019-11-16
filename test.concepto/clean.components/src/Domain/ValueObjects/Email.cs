@@ -9,6 +9,8 @@ namespace Domain.ValueObjects
 
         public Email(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) throw new EmailValidationException("The 'Email' is required.");
+            
             var hasCorrectFormat = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             if (!hasCorrectFormat.IsMatch(text)) throw new EmailValidationException("The 'Email' format is not valid.");
 

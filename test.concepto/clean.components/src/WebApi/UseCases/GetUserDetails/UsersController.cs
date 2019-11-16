@@ -21,10 +21,14 @@ namespace WebApi.UseCases.GetUserDetails
         }
 
         /// <summary>
-        /// Gets the user.
+        /// Get the user details.
         /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns></returns>
+        /// <response code="200">Found the registered user details.</response>
+        /// <response code="400">Bad request.</response>
+        /// <response code="404">The user not exist.</response>
+        /// <response code="500">Error.</response>
+        /// <param name="request">The request to get a user</param>
+        /// <returns>The user details.</returns>
         [HttpGet("{UserId}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetUserDetailsResponse))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

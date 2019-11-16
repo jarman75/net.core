@@ -15,7 +15,7 @@ namespace Infrastructure.EntityFrameworkDataAccess
 
         public IUser NewUser(ShortName name, Email email, Password password)
         {
-            return new User(Guid.NewGuid().ToString(), name, email, password);
+            return new User(name, email, password);
         }
     }
 }
