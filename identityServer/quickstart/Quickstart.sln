@@ -13,11 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppMvc", "src\AppMvc\AppMvc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{38905714-B095-4958-A67E-AC5D818F7750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApp", "src\AdminApp\AdminApp.csproj", "{789AE827-DB1C-4EDF-B15D-210968175D22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminApp", "src\AdminApp\AdminApp.csproj", "{789AE827-DB1C-4EDF-B15D-210968175D22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServerDb", "src\IdentityServerDb\IdentityServerDb.csproj", "{E9FF0BD4-6E66-4AB4-8098-E74BB15DAE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerDb", "src\IdentityServerDb\IdentityServerDb.csproj", "{E9FF0BD4-6E66-4AB4-8098-E74BB15DAE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppAuth", "src\BlazorAppAuth\BlazorAppAuth.csproj", "{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppAuth", "src\BlazorAppAuth\BlazorAppAuth.csproj", "{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncfusionBlazorApp", "src\SyncfusionBlazorApp\SyncfusionBlazorApp.csproj", "{4D954CC2-953E-4B60-8713-F5CB072C93BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,18 @@ Global
 		{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4}.Release|x64.Build.0 = Release|Any CPU
 		{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4}.Release|x86.ActiveCfg = Release|Any CPU
 		{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4}.Release|x86.Build.0 = Release|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Release|x64.Build.0 = Release|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +139,7 @@ Global
 		{789AE827-DB1C-4EDF-B15D-210968175D22} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{E9FF0BD4-6E66-4AB4-8098-E74BB15DAE8D} = {B7A6E764-D281-4102-821F-36F0E460108E}
 		{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4} = {B7A6E764-D281-4102-821F-36F0E460108E}
+		{4D954CC2-953E-4B60-8713-F5CB072C93BA} = {B7A6E764-D281-4102-821F-36F0E460108E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {595BF853-972B-46C9-8266-3C5FDE633B0B}
