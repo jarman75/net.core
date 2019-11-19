@@ -1,9 +1,8 @@
-﻿using Application.Boundaries.GetUserDetails;
-using Application.Repositories;
+﻿using Application.Repositories;
 using Domain.Users;
 using System.Threading.Tasks;
 
-namespace Application.UseCases
+namespace Application.UseCases.GetUserDetails
 {
     public sealed class GetUserDetails : IUseCase
     {

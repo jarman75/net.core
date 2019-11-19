@@ -3,7 +3,7 @@ using Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 
-namespace Application.Boundaries.GetUserDetails
+namespace Application.UseCases.GetUserDetails
 {
     public interface IOutputPort
         : IOutputPortStandard<GetUserDetailsOutput>, IOutputPortNotFound

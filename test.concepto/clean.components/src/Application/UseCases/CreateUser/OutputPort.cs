@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Application.Boundaries.CreateUser
+namespace Application.UseCases.CreateUser
 {
     public interface IOutputPort :
         IOutputPortStandard<CreateUserOutput>
@@ -18,5 +16,5 @@ namespace Application.Boundaries.CreateUser
         }
     }
 
-    
+
 }

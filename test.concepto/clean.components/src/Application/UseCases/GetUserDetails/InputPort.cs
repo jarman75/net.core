@@ -1,7 +1,7 @@
 ﻿using Application.Exceptions;
 using System;
 
-namespace Application.Boundaries.GetUserDetails
+namespace Application.UseCases.GetUserDetails
 {
     public interface IUseCase : IUseCase<GetUserDetailsInput> { }
     public sealed class GetUserDetailsInput : IUseCaseInput
@@ -13,7 +13,7 @@ namespace Application.Boundaries.GetUserDetails
             {
                 throw new InputValidationException($"{nameof(userId)} cannot be empty.");
             }
-            
+
             UserId = userId;
         }
     }

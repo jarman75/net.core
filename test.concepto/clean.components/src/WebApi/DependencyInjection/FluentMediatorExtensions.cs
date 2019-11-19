@@ -1,12 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentMediator;
-using Application.Boundaries.GetUserDetails;
-using Application.Boundaries.CreateUser;
-using Application.Boundaries.UpdateUser;
+using Application.UseCases.GetUserDetails;
+using Application.UseCases.CreateUser;
+using Application.UseCases.UpdateUser;
 
 namespace WebApi.DependencyInjection
 {
@@ -19,13 +15,13 @@ namespace WebApi.DependencyInjection
                 {                    
 
                     builder.On<GetUserDetailsInput>().PipelineAsync()
-                        .Call<Application.Boundaries.GetUserDetails.IUseCase>((handler, request) => handler.Execute(request));
+                        .Call<Application.UseCases.GetUserDetails.IUseCase>((handler, request) => handler.Execute(request));
 
                     builder.On<CreateUserInput>().PipelineAsync()
-                        .Call<Application.Boundaries.CreateUser.IUseCase>((handler, request) => handler.Execute(request));
+                        .Call<Application.UseCases.CreateUser.IUseCase>((handler, request) => handler.Execute(request));
 
                     builder.On<UpdateUserInput>().PipelineAsync()
-                        .Call<Application.Boundaries.UpdateUser.IUseCase>((handler, request) => handler.Execute(request));
+                        .Call<Application.UseCases.UpdateUser.IUseCase>((handler, request) => handler.Execute(request));
 
                 });
 

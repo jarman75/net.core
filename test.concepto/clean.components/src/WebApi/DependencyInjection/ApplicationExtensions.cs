@@ -6,9 +6,9 @@ namespace WebApi.DependencyInjection
     {
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
-            services.AddScoped<Application.Boundaries.GetUserDetails.IUseCase, Application.UseCases.GetUserDetails>();
-            services.AddScoped<Application.Boundaries.CreateUser.IUseCase, Application.UseCases.CreateUser>();
-            services.AddScoped<Application.Boundaries.UpdateUser.IUseCase, Application.UseCases.UpdateUser>();
+            services.AddScoped<Application.UseCases.GetUserDetails.IUseCase, Application.UseCases.GetUserDetails.GetUserDetails>();
+            services.AddScoped<Application.UseCases.CreateUser.IUseCase, Application.UseCases.CreateUser.CreateUser>();
+            services.AddScoped<Application.UseCases.UpdateUser.IUseCase, Application.UseCases.UpdateUser.UpdateUser>();
 
             return services;
         }

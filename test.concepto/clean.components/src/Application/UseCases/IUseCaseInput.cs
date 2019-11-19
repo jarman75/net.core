@@ -1,4 +1,4 @@
-﻿namespace Application.Boundaries
+﻿namespace Application.UseCases
 {
     public interface IUseCaseInput
     {

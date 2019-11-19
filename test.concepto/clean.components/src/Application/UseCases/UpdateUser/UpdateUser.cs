@@ -1,9 +1,8 @@
-﻿using Application.Boundaries.UpdateUser;
-using Application.Repositories;
+﻿using Application.Repositories;
 using Domain.Users;
 using System.Threading.Tasks;
 
-namespace Application.UseCases
+namespace Application.UseCases.UpdateUser
 {
     public sealed class UpdateUser : IUseCase
     {
@@ -18,9 +17,9 @@ namespace Application.UseCases
 
         public async Task Execute(UpdateUserInput input)
         {
-            
+
             try
-            {                
+            {
                 await _userRepository.Update(input.User);
                 BuildOutput(input.User);
             }

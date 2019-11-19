@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-using Application.Boundaries.CreateUser;
+using Application.UseCases.CreateUser;
 using Domain.ValueObjects;
 using FluentMediator;
 using Microsoft.AspNetCore.Http;

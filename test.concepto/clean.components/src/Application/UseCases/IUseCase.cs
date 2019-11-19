@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Application.Boundaries
+namespace Application.UseCases
 {
     public interface IUseCase<in TUseCaseInput> where TUseCaseInput : IUseCaseInput
     {

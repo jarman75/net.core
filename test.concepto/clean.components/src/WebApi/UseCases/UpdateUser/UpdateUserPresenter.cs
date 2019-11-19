@@ -1,4 +1,4 @@
-﻿using Application.Boundaries.UpdateUser;
+﻿using Application.UseCases.UpdateUser;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.UseCases.UpdateUser

@@ -1,12 +1,10 @@
 ﻿using Domain.Users;
 using Domain.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Application.Boundaries.UpdateUser
+namespace Application.UseCases.UpdateUser
 {
-    public interface IOutputPort : 
+    public interface IOutputPort :
         IOutputPortStandard<UpdateUserOutput>, IOutputPortNotFound
     { }
 

@@ -1,4 +1,4 @@
-﻿using Application.Boundaries.GetUserDetails;
+﻿using Application.UseCases.GetUserDetails;
 using FluentMediator;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

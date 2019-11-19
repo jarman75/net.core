@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Boundaries.UpdateUser;
+using Application.UseCases.UpdateUser;
 using Domain.ValueObjects;
 using FluentMediator;
 using Microsoft.AspNetCore.Http;

@@ -1,4 +1,4 @@
-﻿using Application.Boundaries.GetUserDetails;
+﻿using Application.UseCases.GetUserDetails;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.UseCases.GetUserDetails

@@ -1,12 +1,8 @@
-﻿using Application.Boundaries.CreateUser;
-using Application.Repositories;
-using Domain.Users;
+﻿using Application.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.UseCases
+namespace Application.UseCases.CreateUser
 {
     public sealed class CreateUser : IUseCase
     {
@@ -21,10 +17,10 @@ namespace Application.UseCases
 
         public async Task Execute(CreateUserInput input)
         {
-            
+
             await _userRepository.Add(input.User);
             BuildOutput(input.User.Id);
-            
+
         }
 
         private void BuildOutput(Guid id)
