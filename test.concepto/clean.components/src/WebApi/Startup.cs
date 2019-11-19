@@ -15,6 +15,7 @@ namespace WebApi
             Configuration = configuration;
         }
 
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -33,6 +34,18 @@ namespace WebApi
             services.AddSQLServerPersistence(Configuration);
             services.AddPresenters();
             services.AddMediator();
+
+             services.AddCors(options =>
+                {
+                options.AddPolicy("AllowAllHeaders",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5000")
+                            .AllowAnyHeader();
+                    });
+                });
+
+            
         }
 
         
@@ -51,10 +64,14 @@ namespace WebApi
 
             app.UseAuthorization();
 
+            app.UseCors("AllowAllHeaders");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            
         }
     }
 }

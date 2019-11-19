@@ -6,7 +6,7 @@ namespace WebApi.UseCases.UpdateUser
     public sealed class UpdateUserPresenter : IOutputPort
     {
         public IActionResult ViewModel { get; private set; }
-        
+
         public void NotFound(string message)
         {
             ViewModel = new NotFoundObjectResult(message);

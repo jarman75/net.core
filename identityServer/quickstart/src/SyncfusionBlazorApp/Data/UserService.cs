@@ -9,9 +9,9 @@ namespace SyncfusionBlazorApp.Data
     {
         private static readonly List<User> Users = new List<User>
         {
-            new User  { Id = 1, Name = "Pablo Sanchez", Rol = "Administrador"},
-            new User  { Id = 2, Name = "Manuel Garcia", Rol = "Consultor"},
-            new User  { Id = 3, Name = "Rafael Gomez", Rol = "Editor"}
+            new User  { Id = Guid.NewGuid(), Name = "Pablo Sanchez", Email = "pablo@user.com"},
+            new User  { Id = Guid.NewGuid(), Name = "Manuel Garcia", Email = "manuel@user.com"},
+            new User  { Id = Guid.NewGuid(), Name = "Rafael Gomez", Email = "rafa@user.com"}
         };
 
         public Task<List<User>> GetUsersAsync()

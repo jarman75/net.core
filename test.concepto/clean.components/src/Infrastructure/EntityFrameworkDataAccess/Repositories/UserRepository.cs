@@ -1,5 +1,6 @@
 ﻿using Domain.Users;
 using Infrastructure;
+using Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
@@ -56,7 +57,11 @@ namespace Insfrastructure.EntityFrameworkDataAccess.Repositories
             applicationUser.Email = updateUser.Email.ToString();
             applicationUser.UserName = updateUser.Name.ToString();
             
-            await _userManager.UpdateAsync(applicationUser);
+            var result = await _userManager.UpdateAsync(applicationUser);
+            if  (!result.Succeeded) 
+            {
+                throw new Exception("Update user error.");
+             }
         }
     }
 }

@@ -25,8 +25,9 @@ namespace Application.UseCases.UpdateUser
             }
             catch (UserNotFoundException ex)
             {
-                _outputPort.NotFound(ex.Message);
+                _outputPort.NotFound(ex.Message);                        
             }
+            
         }
 
         private void BuildOutput(IUser user)
