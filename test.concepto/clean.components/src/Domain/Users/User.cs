@@ -13,16 +13,19 @@ namespace Domain.Users
         public Password Password { get; protected set; }
         public bool RequiredChangePassword { get; protected set; }
 
-        public User()
+        public User(ShortName name, Email email, Password password)
         {
-            Roles = new RoleCollection();
-        }
-        public User(string id, ShortName name, Email email, Password password)
-        {
-            Id = new Guid(id);
+            Id = Guid.NewGuid();
             Name = name;
             Email = email;
             Password = password;
+            Roles = new RoleCollection();
+        }
+        public User(Guid id, ShortName name, Email email)
+        {
+            Id = id;
+            Name = name;
+            Email = email;        
             Roles = new RoleCollection();
         }
 

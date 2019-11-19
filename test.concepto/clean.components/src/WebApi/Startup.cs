@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApi.DependencyInjection;
+using WebApi.DependencyInjection.FeatureFlags;
 
 namespace WebApi
 {
@@ -21,6 +22,13 @@ namespace WebApi
         {
             
             services.AddControllers().AddControllersAsServices();
+            
+            services.AddBusinessExceptionFilter();
+            
+            services.AddFeatureFlags(Configuration);
+            //services.AddVersioning();            
+            //services.AddSwagger();
+
             services.AddUseCases();
             services.AddSQLServerPersistence(Configuration);
             services.AddPresenters();

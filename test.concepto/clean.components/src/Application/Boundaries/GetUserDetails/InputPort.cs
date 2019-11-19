@@ -13,6 +13,8 @@ namespace Application.Boundaries.GetUserDetails
             {
                 throw new InputValidationException($"{nameof(userId)} cannot be empty.");
             }
+            
+            UserId = userId;
         }
     }
 }
