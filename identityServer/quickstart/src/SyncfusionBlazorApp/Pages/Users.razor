@@ -14,7 +14,7 @@
 else
 {
     <EjsGrid TValue="User" AllowFiltering="true" AllowSorting="true" Toolbar="@(new List<string>() {"Add", "Edit", "Delete" })" AllowPaging="true">
-        <EjsDataManager Url="http://localhost:50239/api/users" Adaptor="Adaptors.WebApiAdaptor"></EjsDataManager>
+        <EjsDataManager Url="http://localhost:50238/api/users" Adaptor="Adaptors.WebApiAdaptor"></EjsDataManager>
         <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
         <GridColumns>
             <GridColumn Field=@nameof(User.Id) HeaderText="Id" IsPrimaryKey="true" ValidationRules="@(new { required=true})"></GridColumn>
