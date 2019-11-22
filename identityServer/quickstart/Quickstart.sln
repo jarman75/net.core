@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerDb", "src\Ide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppAuth", "src\BlazorAppAuth\BlazorAppAuth.csproj", "{C4BBEED5-55F1-48B0-8C3E-14C38C025BB4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncfusionBlazorApp", "src\SyncfusionBlazorApp\SyncfusionBlazorApp.csproj", "{4D954CC2-953E-4B60-8713-F5CB072C93BA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
