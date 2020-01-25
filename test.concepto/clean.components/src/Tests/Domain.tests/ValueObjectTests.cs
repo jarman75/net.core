@@ -93,6 +93,17 @@ namespace Domain.tests
 
         }
 
+        [Test]
+        public void Test_PersonName() {
+            var name = new PersonName("Pablo");
+            var name2 = new PersonName("Pablo");
+
+            Assert.AreEqual(name,name2);
+
+            
+            Assert.AreEqual("Pablo",name.ToString());
+        }
+
     }    
 
    
