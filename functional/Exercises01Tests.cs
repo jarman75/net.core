@@ -1,5 +1,8 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace functional
 {
@@ -19,6 +22,9 @@ namespace functional
             
             var negacion = esMayor.Negate();
             Assert.IsFalse(negacion(10,1));
+
+            var lista = new List<int>{1,2,3};
+            var ordenada = funciones.Ordena(lista);        
         }    
 
         
@@ -27,5 +33,10 @@ namespace functional
     static class funciones { 
         public static Func<T1,T2,bool> Negate<T1,T2>(this Func<T1,T2,bool> f) 
         => (t1,t2) => !f(t1,t2); 
+
+        public static Func<List<int>,List<int>> Ordena(List<int> lista) 
+        => (lista) => lista.OrderBy(x=>x).ToList();
+         
+       
     }
 }
