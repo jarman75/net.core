@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace functional
@@ -32,6 +33,12 @@ namespace functional
             var expected = new List<int> {-600, -100, -67, -23, 1, 1, 2, 12, 30, 45, 56, 63, 75, 85, 193, 432, 975, 1000};
             var actual = list.QuickSort();
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TestShortName() {
+            var name = new ShortName(new string('5',50));
+            Assert.AreEqual(new string('5',5),name.ToString());            
         }
         
     }
@@ -73,6 +80,26 @@ namespace functional
          , Func<TDisp, R> func) where TDisp : IDisposable
         {
             using (var disp = createDisposable()) return func(disp);
+        }
+    }
+
+    public struct ShortName : IEquatable<ShortName>
+    {
+        
+        public ShortName(string value) {
+            _value = value;
+        }
+        private string _value;        
+
+        public bool Equals([AllowNull] ShortName other) 
+        => other.ToString().Equals(this.ToString());
+
+        public override int GetHashCode() 
+        => HashCode.Combine(_value);
+
+        public override string ToString()
+        {
+            return _value.Substring(0,5);
         }
     }
 }
