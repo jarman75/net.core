@@ -1,0 +1,132 @@
+﻿<h3>InfoPanelComponent</h3>
+
+@foreach (var sec in data.Sections)
+{
+    <hr>
+    <h6>@sec.Tittle</h6>
+    <hr>
+    @foreach (var block in sec.Blocks)
+    {        
+        @foreach (var prop in block.Props)
+        {
+           <div class="row">
+                <div class="col-2">
+                    <span>@prop.Label</span>
+                </div>
+                <div class="col-10">
+                    <span>@prop.Value</span>
+                </div>
+           </div>
+        }
+    }
+}
+
+@code {
+
+    Data.InfoPanel data {get; set;}
+
+    
+    protected override void OnInitialized()
+    {
+        data = new Data.InfoPanel {
+            Id = 1,
+            Name = "Info1",
+            Sections = 
+            new List<Data.Section> {
+                new Data.Section {
+                    Tittle = "Personal Data",
+                    Blocks = 
+                        new List<Data.Block> {
+                            new Data.Block {
+                                Order = 1,
+                                Props = new List<Data.Property>{
+                                        new Data.Property {
+                                            Label = "Name",
+                                            Value = "Armando",
+                                            Order = 1
+                                        },
+                                        new Data.Property {
+                                            Label = "Data Born",
+                                            Value = new DateTime(1975,9,8),
+                                            Order = 2
+                                        },
+                                        new Data.Property {
+                                            Label = "Salary",
+                                            Value = 21.000,
+                                            Order = 3
+                                        }
+                                    }
+                            },
+                            new Data.Block {
+                                Order = 2,
+                                Props = new List<Data.Property>{
+                                        new Data.Property {
+                                            Label = "Projects",
+                                            Value = 2,
+                                            Order = 1
+                                        },
+                                        new Data.Property {
+                                            Label = "Ranking",
+                                            Value = 115,
+                                            Order = 2
+                                        },
+                                        new Data.Property {
+                                            Label = "Saying",
+                                            Value = "Mas vale solo que mal acompañado",
+                                            Order = 3
+                                        }
+                                    }
+                            }
+                        }                        
+                },
+                new Data.Section {
+                    Tittle = "Team Data",
+                    Blocks = 
+                        new List<Data.Block> {
+                            new Data.Block {
+                                Order = 1,
+                                Props = new List<Data.Property>{
+                                        new Data.Property {
+                                            Label = "Develop1",
+                                            Value = "Juan",
+                                            Order = 1
+                                        },
+                                        new Data.Property {
+                                            Label = "Develop2",
+                                            Value = "Pablo",
+                                            Order = 2
+                                        },
+                                        new Data.Property {
+                                            Label = "Develop3",
+                                            Value = "Fran",
+                                            Order = 3
+                                        }
+                                    }
+                            },
+                            new Data.Block {
+                                Order = 2,
+                                Props = new List<Data.Property>{
+                                        new Data.Property {
+                                            Label = "Project",
+                                            Value = "Sanka",
+                                            Order = 1
+                                        },
+                                        new Data.Property {
+                                            Label = "Technology",
+                                            Value = ".Net",
+                                            Order = 2
+                                        },
+                                        new Data.Property {
+                                            Label = "Database",
+                                            Value = "Sql.Server",
+                                            Order = 3
+                                        }
+                                    }
+                            }
+                        }                        
+                }
+            }
+        };
+    } 
+
+}
