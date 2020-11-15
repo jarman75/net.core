@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Test
 {
-    public class Tests
+    public class Net5Test
     {
         public record Person(string FirstName, string LastName);    
         
@@ -15,13 +15,13 @@ namespace Test
         [Test]
         public void Test_records()
         {   
-            Person yo = new("Armando", "Martí");    
             
-            var tu = new Person("Luis", "Sanchez");
-
-            var other = yo with {LastName = "Martí"};
-            
-            Assert.IsTrue("Armando" == other.FirstName);
+            Person yo = new("Armando", "Martí");                
+            var tu = new Person("Armando", "Martí");
+            var otro = yo with {LastName = "Sánchez"};
+                        
+            Assert.AreEqual(yo,tu);
+            Assert.AreNotEqual(yo,otro);
         }
     }
 }
