@@ -1,5 +1,6 @@
 ##Crear imagen "myimage"
 docker build -t myimage -f Dockerfile .
+
 ##Crear contenedor desde imagen
 docker create myimage
 
