@@ -1,0 +1,79 @@
+﻿@page "/"
+@using Data
+
+<h3>Personas</h3>
+
+    <ListadoGenerico Listado="personas">
+        
+        <PlantillaNula>
+            <img src="https://image.freepik.com/foto-gratis/marco-imagen-vacio-lugar-libre-interior-aislado-blanco_76080-2496.jpg" />
+        </PlantillaNula>
+        <PlantillaVacia>
+            <text>No hay personas</text>
+        </PlantillaVacia>
+
+        @* <div style="color: red;">El contendio que tu quieras</div> *@
+
+        <PlantillaConElementos>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido1</th>
+                        <th>Apellido2</th>
+                    </tr>
+                </thead>
+            @foreach (Persona persona in personas) {
+                <tr>
+                    <td>@persona.Id</td>
+                    <td>@persona.Nombre</td>
+                    <td>@persona.Apellido1</td>
+                    <td>@persona.Apellido2</td>
+                </tr>
+            }
+            <tfoot>
+                <tr>
+                    <tf>Total Personas @personas.Count</tf>
+                </tr>
+            </tfoot>
+            </table>
+        </PlantillaConElementos>
+
+    </ListadoGenerico>
+    
+    <ListadoGenerico Listado="personas">
+        <PlantillaConElementosTipo>
+            <div class="card">
+                <div class="card-body">
+                    @context.Id
+                    @context.ToString()
+                </div>
+            </div>
+        </PlantillaConElementosTipo>
+    </ListadoGenerico>
+
+
+
+@code {
+    private List<Persona> personas;  
+    
+    protected async override Task OnInitializedAsync() {
+        //personas.Clear();        
+        //personas = null;
+        personas = await GetDataAsync();
+        
+    }
+
+    private async Task<List<Persona>> GetDataAsync() 
+        {
+            await Task.Delay(3000);        
+            return  new List<Persona>
+            {
+                new Persona("Pepe", "Perez", "Sanchez"),
+                new Persona("Rosa", "Perez", "Sanchez"),
+                new Persona("Pablo", "Gomez", "Gil"),
+                new Persona("Laura", "Gomez", "Gil"),
+            };
+        }
+}

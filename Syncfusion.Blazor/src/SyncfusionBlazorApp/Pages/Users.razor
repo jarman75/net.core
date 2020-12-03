@@ -1,0 +1,45 @@
+﻿@page "/users"
+@using SyncfusionBlazorApp.Data
+@using Syncfusion.EJ2.Blazor.Grids;
+@using Syncfusion.EJ2.Blazor.Data
+
+@inject UserService Service;
+
+<h3>Users</h3>
+
+@if (data == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EjsGrid TValue="User" AllowFiltering="true" AllowSorting="true" Toolbar="@(new List<string>() {"Add", "Edit", "Delete" })" AllowPaging="true">
+        <EjsDataManager Url="http://localhost:50238/api/users" Adaptor="Adaptors.WebApiAdaptor"></EjsDataManager>
+        <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
+        <GridColumns>
+            <GridColumn Field=@nameof(User.Id) HeaderText="Id" IsPrimaryKey="true" ValidationRules="@(new { required=true})"></GridColumn>
+            <GridColumn Field=@nameof(User.Name) HeaderText="Nombre"></GridColumn>
+            <GridColumn Field=@nameof(User.Email) HeaderText="Email"></GridColumn>
+            <GridColumn Field=@nameof(User.Password) HeaderText="Password"></GridColumn>
+
+        </GridColumns>
+    </EjsGrid>
+}
+
+@code {
+    public List<User> data { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        data = await Service.GetUsersAsync();
+    }
+
+    [Inject]
+    protected IJSRuntime JsRuntime { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        this.JsRuntime.Ejs().LoadLocaleData("wwwroot/ej2-locale/src/es.json").SetCulture("es").SetCurrencyCode("EU");
+    }
+}

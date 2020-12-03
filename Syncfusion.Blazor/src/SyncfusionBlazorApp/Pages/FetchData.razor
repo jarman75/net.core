@@ -1,0 +1,43 @@
+﻿@page "/fetchdata"
+@using SyncfusionBlazorApp.Data
+@using Syncfusion.EJ2.Blazor.Grids;
+@inject WeatherForecastService ForecastService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EjsGrid AllowFiltering="true" AllowSorting="true" DataSource="@forecasts" Toolbar="@(new List<string>() {"Add", "Edit", "Delete", "Update", "Cancel" })" AllowPaging="true">
+        <GridEditSettings AllowAdding="true" AllowDeleting="true" AllowEditing="true" Mode="EditMode.Dialog"></GridEditSettings>
+        <GridColumns>
+            <GridColumn Field=@nameof(WeatherForecast.Date) Format="dd/MM/yyyy" HeaderText="Date"></GridColumn>
+            <GridColumn Field=@nameof(WeatherForecast.TemperatureC) HeaderText="Temp. (C)"></GridColumn>
+            <GridColumn Field=@nameof(WeatherForecast.TemperatureF) HeaderText="Temp. (F)"></GridColumn>
+            <GridColumn Field=@nameof(WeatherForecast.Summary) HeaderText="Summary"></GridColumn>
+        </GridColumns>
+    </EjsGrid>
+}
+
+@code {
+    public WeatherForecast[] forecasts { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+
+    [Inject]
+    protected IJSRuntime JsRuntime { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        this.JsRuntime.Ejs().LoadLocaleData("wwwroot/ej2-locale/src/es.json").SetCulture("es").SetCurrencyCode("EU");
+    }
+}

@@ -1,0 +1,18 @@
+public class Kata
+{
+    public static IEnumerable<string> OpenOrSenior(int[][] data)
+    {
+        var Resultado = new List<string>();
+        foreach(var d in data){
+          int Edad = d[0];
+          int Handicap = d[1];
+          if((Edad >= 55) && (Handicap > 7)){
+            Resultado.add("SENIOR");
+          }
+          else{
+            Resultado.add("OPEN");
+          }
+        }
+        return Resultado;
+    }
+}
