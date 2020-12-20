@@ -1,6 +1,6 @@
 using System;
 
-namespace app.mvvm.Data
+namespace BlazorApp.MvVm.Data
 {
     public class WeatherForecast
     {

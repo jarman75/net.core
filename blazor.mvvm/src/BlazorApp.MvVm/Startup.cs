@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BlazorApp.MvVm.Data;
+using BlazorApp.MvVm.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -9,10 +7,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using app.mvvm.Data;
-using app.mvvm.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace app.mvvm
+namespace BlazorApp.MvVm
 {
     public class Startup
     {
@@ -30,8 +30,8 @@ namespace app.mvvm
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddScoped<ICustomerService,CustomerService>();
-            services.AddScoped<ICustomerCreateViewModel, CustomerCreateViewModel>();
+            services.AddScoped<IToDoViewModel, ToDoViewModel>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
