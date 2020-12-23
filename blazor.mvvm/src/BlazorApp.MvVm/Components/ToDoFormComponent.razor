@@ -2,6 +2,8 @@
 
 
 <EditForm Model="@ViewModel.ToDoItem" OnValidSubmit="@SaveTodoItem">
+    <DataAnnotationsValidator />
+    @*<ValidationSummary />*@
     <div class="col-4">
         <div class="form-group">
             <label for="title">Title</label>
