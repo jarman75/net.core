@@ -1,0 +1,69 @@
+@page "/search"
+@inject ICountryService CountryService
+
+<BlazoredTypeahead SearchMethod="SearchCountrys"
+                   MinimumLength="3"
+                   MaximumSuggestions="10"
+                   Debounce ="500"
+                   @bind-Value="SelectedCountry">
+    <SelectedTemplate>
+        @context.Name
+    </SelectedTemplate>
+    <ResultTemplate>
+        @context.Name (@context.Alpha2Code)
+    </ResultTemplate>
+    <NotFoundTemplate>
+        Sorry, there weren't any search results.
+    </NotFoundTemplate>
+</BlazoredTypeahead>
+
+@if (SelectedCountry != null)
+{
+    <p>Selected Film is: @SelectedCountry.Name</p>
+}
+
+@code {
+
+    private IEnumerable<Country> Countrys {get; set;}
+    private Country SelectedCountry;
+    private List<Film> Films;
+    private Film SelectedFilm;
+
+    protected override void OnInitialized()
+    {
+        Films = new List<Film> {
+            new Film("The Matrix", 1999),
+            new Film("Hackers", 1995),
+            new Film("War Games", 1983),
+            new Film("Star Wars", 1984),
+            new Film("Indiana Jones", 1982),
+            new Film("Indiana Jones III", 1989),
+            new Film("ET Mi casa telefono", 1989) };
+    }
+
+    private async Task<IEnumerable<Film>> SearchFilms(string searchText)
+    {
+        return await Task.FromResult(Films.Where(x => x.Title.ToLower().Contains(searchText.ToLower())).ToList());
+    }
+
+    private async Task<IEnumerable<Country>> SearchCountrys(string searchText)
+    {
+        var response =  await CountryService.GetCountrys(searchText);
+        return response;
+    }
+
+    class Film
+    {
+        public string Title { get; set; }
+        public int Year { get; set; }
+
+        public Film(string title, int year)
+        {
+            Title = title;
+            Year = year;
+        }
+    }
+
+    
+
+}
