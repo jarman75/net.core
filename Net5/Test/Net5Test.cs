@@ -3,27 +3,8 @@ using NUnit.Framework;
 
 namespace Test
 {
-    public class Net5Test
+    public partial class Net5Test
     {
-        public record Person(string FirstName, string LastName);    
-        public record Animal(string Name, int Age);
-        public record Gato(string Name, int Age) : Animal(Name, Age);
-        
-        public class AnimalService
-        {
-            public virtual Animal Create(string nombre, int edad)
-            {
-                return new(nombre, edad);
-            }
-        }
-
-        public class GatoService : AnimalService
-        {
-            public override Gato Create(string nombre, int edad)
-            {
-                return new(nombre, edad);
-            }
-        }
         
         [SetUp]
         public void Setup()
@@ -53,6 +34,26 @@ namespace Test
 
             Assert.IsTrue(resultAnimal is Animal);
             Assert.IsTrue(resultGato is Gato);
+        }
+
+        [Test]
+        public void Test_clone() {
+            var original = new Clonable(){
+                Id=1, Name="Nombre01", 
+                Pets = new System.Collections.Generic.List<Animal>{
+                    new Animal("Rufo", 7),
+                    new Animal("Marlene", 15)
+                }
+                };
+            
+            var clone = original.DeepClone();
+            clone.Name = "Nombre02";
+            clone.Id = 2;
+            clone.Pets.RemoveAt(0);
+            clone.Pets[0] = new Animal("Lucas",17);
+
+            Assert.AreNotEqual(original.Id, clone.Id);
+        
         }
     }
 }
