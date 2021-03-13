@@ -1,0 +1,98 @@
+2021-03-13 11:22:12.161 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:22:12.359 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:22:12.363 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:22:30.556 +01:00 [INF] Hello, world!
+2021-03-13 11:22:30.601 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 136.7319 ms
+2021-03-13 11:31:56.178 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:31:56.371 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:31:56.373 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:32:06.674 +01:00 [INF] Hello, world!
+2021-03-13 11:32:06.830 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 311.0847 ms
+2021-03-13 11:39:27.001 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:39:27.158 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:39:27.161 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:39:42.433 +01:00 [INF] Hello, world!
+2021-03-13 11:39:42.473 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 115.1964 ms
+2021-03-13 11:40:51.367 +01:00 [INF] Now listening on: https://localhost:5001
+2021-03-13 11:40:51.428 +01:00 [INF] Now listening on: http://localhost:5000
+2021-03-13 11:40:51.432 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:40:51.438 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:40:51.441 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:41:19.770 +01:00 [INF] Hello, world!
+2021-03-13 11:41:19.810 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 114.9879 ms
+2021-03-13 11:44:13.116 +01:00 [INF] Now listening on: http://localhost:6005
+2021-03-13 11:44:13.230 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:44:13.238 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:44:13.253 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:45:11.766 +01:00 [INF] Now listening on: http://localhost:6005
+2021-03-13 11:45:11.930 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:45:11.934 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:45:11.948 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:45:22.202 +01:00 [WRN] Failed to determine the https port for redirect.
+2021-03-13 11:45:22.277 +01:00 [INF] Hello, world!
+2021-03-13 11:45:22.311 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 98.8005 ms
+2021-03-13 11:45:28.442 +01:00 [INF] Application is shutting down...
+2021-03-13 11:48:40.533 +01:00 [INF] Now listening on: http://localhost:6005
+2021-03-13 11:48:40.632 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:48:40.635 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:48:40.638 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:49:17.754 +01:00 [WRN] Failed to determine the https port for redirect.
+2021-03-13 11:49:17.829 +01:00 [INF] Hello, world!
+2021-03-13 11:49:17.873 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 109.8067 ms
+2021-03-13 11:49:30.507 +01:00 [INF] Application is shutting down...
+2021-03-13 11:50:23.129 +01:00 [INF] Now listening on: https://localhost:5001
+2021-03-13 11:50:23.203 +01:00 [INF] Now listening on: http://localhost:5000
+2021-03-13 11:50:23.205 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 11:50:23.206 +01:00 [INF] Hosting environment: Development
+2021-03-13 11:50:23.208 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 11:50:37.174 +01:00 [INF] Hello, world!
+2021-03-13 11:50:37.209 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 102.2468 ms
+2021-03-13 12:04:32.860 +01:00 [INF] Now listening on: https://localhost:5001
+2021-03-13 12:04:32.978 +01:00 [INF] Now listening on: http://localhost:5000
+2021-03-13 12:04:32.980 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 12:04:32.984 +01:00 [INF] Hosting environment: Development
+2021-03-13 12:04:32.987 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 12:04:36.788 +01:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-03-13 12:04:37.731 +01:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 949.8784ms
+2021-03-13 12:04:37.957 +01:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - -
+2021-03-13 12:04:38.201 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-03-13 12:04:38.204 +01:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/swagger-ui.css - - - 0 142933 text/css 246.9079ms
+2021-03-13 12:04:38.439 +01:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/favicon-16x16.png - -
+2021-03-13 12:04:38.458 +01:00 [INF] Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+2021-03-13 12:04:38.463 +01:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/favicon-16x16.png - - - 0 665 image/png 23.8787ms
+2021-03-13 12:04:38.569 +01:00 [INF] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-03-13 12:04:38.782 +01:00 [INF] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 213.9032ms
+2021-03-13 12:05:09.090 +01:00 [INF] Request starting HTTP/2 GET https://localhost:5001/WeatherForecast - -
+2021-03-13 12:05:09.156 +01:00 [INF] Executing endpoint 'ApiSample.Controllers.WeatherForecastController.Get (ApiSample)'
+2021-03-13 12:05:09.203 +01:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.Collections.Generic.IEnumerable`1[ApiSample.WeatherForecast] Get() on controller ApiSample.Controllers.WeatherForecastController (ApiSample).
+2021-03-13 12:05:09.209 +01:00 [INF] Hello, world!
+2021-03-13 12:05:09.220 +01:00 [INF] Executing ObjectResult, writing value of type 'ApiSample.WeatherForecast[]'.
+2021-03-13 12:05:09.251 +01:00 [INF] Executed action ApiSample.Controllers.WeatherForecastController.Get (ApiSample) in 37.5442ms
+2021-03-13 12:05:09.258 +01:00 [INF] Executed endpoint 'ApiSample.Controllers.WeatherForecastController.Get (ApiSample)'
+2021-03-13 12:05:09.262 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 165.0799 ms
+2021-03-13 12:05:09.268 +01:00 [INF] Request finished HTTP/2 GET https://localhost:5001/WeatherForecast - - - 200 - application/json;+charset=utf-8 177.4448ms
+2021-03-13 12:05:44.138 +01:00 [INF] Application is shutting down...
+2021-03-13 12:11:02.427 +01:00 [INF] Now listening on: https://localhost:5001
+2021-03-13 12:11:02.530 +01:00 [INF] Now listening on: http://localhost:5000
+2021-03-13 12:11:02.533 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 12:11:02.547 +01:00 [INF] Hosting environment: Development
+2021-03-13 12:11:02.555 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 12:11:15.293 +01:00 [INF] Hello, world!
+2021-03-13 12:11:15.331 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 138.5463 ms
+2021-03-13 12:11:24.266 +01:00 [INF] Application is shutting down...
+2021-03-13 12:39:14.606 +01:00 [INF] Now listening on: https://localhost:5001
+2021-03-13 12:39:14.710 +01:00 [INF] Now listening on: http://localhost:5000
+2021-03-13 12:39:14.714 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 12:39:14.716 +01:00 [INF] Hosting environment: Development
+2021-03-13 12:39:14.718 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
+2021-03-13 12:39:35.313 +01:00 [INF] Hello, world!
+2021-03-13 12:39:35.360 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 190.1420 ms
+2021-03-13 12:42:21.703 +01:00 [INF] Hello, world!
+2021-03-13 12:42:21.718 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 16.1618 ms
+2021-03-13 12:44:09.336 +01:00 [INF] Hello, world!
+2021-03-13 12:44:09.342 +01:00 [INF] HTTP GET /WeatherForecast responded 200 in 6.0488 ms
+2021-03-13 12:44:37.895 +01:00 [INF] Now listening on: https://localhost:5001
+2021-03-13 12:44:38.028 +01:00 [INF] Now listening on: http://localhost:5000
+2021-03-13 12:44:38.031 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-03-13 12:44:38.032 +01:00 [INF] Hosting environment: Development
+2021-03-13 12:44:38.034 +01:00 [INF] Content root path: H:\softRepos\net.core\Logging\ApiSample
