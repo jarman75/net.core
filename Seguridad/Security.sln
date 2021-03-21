@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureApi", "SecureApi\SecureApi.csproj", "{9BFCC333-1070-4594-AA5D-424EF59E7AC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureWeb", "SecureWeb\SecureWeb.csproj", "{1C6F4337-B8E6-4766-A686-7E138B12C54A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{9BFCC333-1070-4594-AA5D-424EF59E7AC6}.Release|x64.Build.0 = Release|Any CPU
 		{9BFCC333-1070-4594-AA5D-424EF59E7AC6}.Release|x86.ActiveCfg = Release|Any CPU
 		{9BFCC333-1070-4594-AA5D-424EF59E7AC6}.Release|x86.Build.0 = Release|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Debug|x64.Build.0 = Debug|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Release|x64.ActiveCfg = Release|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Release|x64.Build.0 = Release|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C6F4337-B8E6-4766-A686-7E138B12C54A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
