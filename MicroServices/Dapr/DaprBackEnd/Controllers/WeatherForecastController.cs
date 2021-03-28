@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapr;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,28 @@ namespace DaprBackEnd.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("{city}")]
+        public ActionResult<WeatherForecast> Get([FromState("statestore", "city")] StateEntry<WeatherForecast> forecast)
+        {
+            if (forecast.Value == null)
+            {
+                return NotFound();
+            }
+
+            return forecast.Value;
+        }
+        [HttpPut("{city}")]
+        public async Task Put(WeatherForecast updatedForecast, [FromState("statestore", "city")] StateEntry<WeatherForecast> currentForecast)
+        {
+            // update cached current forecast with updated forecast passed into service endpoint
+            currentForecast.Value = updatedForecast;
+
+            // update state store
+            var success = await currentForecast.TrySaveAsync();
+
+            // ... check result
         }
     }
 }
