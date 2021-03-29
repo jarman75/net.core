@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: DaprFrontEnd/Dockerfile
     ports:
-      - "5100:5001"
+      - "5100:50001"
   
   daprfrontend-dapr:
     image: "daprio/daprd:latest"
@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: DaprBackEnd/Dockerfile
     ports:
-      - "5200:5001"
+      - "5200:50001"
 
   daprbackend-dapr:
     image: "daprio/daprd:latest"
