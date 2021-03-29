@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DaprBackEnd
@@ -24,7 +25,11 @@ namespace DaprBackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddDapr();
+            services.AddControllers().AddDapr(builder => builder.UseJsonSerializationOptions(new JsonSerializerOptions()
+            { 
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true,
+            }));
             services.AddSwaggerGen();
         }
 
@@ -48,11 +53,14 @@ namespace DaprBackEnd
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "VDC ENCARGOS API V1");
-                //c.RoutePrefix = string.Empty; // => http://localhost:<port>/
             });
+
+            // Enable middleware CloudEvents - DAPR
+            app.UseCloudEvents();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapSubscribeHandler();  //Configuration for DAPR suscription
                 endpoints.MapControllers();
             });
         }
