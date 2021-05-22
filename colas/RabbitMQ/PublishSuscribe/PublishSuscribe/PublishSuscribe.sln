@@ -7,19 +7,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productor", "Productor\Prod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumidor", "Consumidor\Consumidor.csproj", "{553220C4-CEB4-4875-815C-A463334E514A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tutorial3", "tutorial3", "{28F6CDCF-8248-45C5-851F-A6F09E8CC63F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tutorial3-Publish-Suscribe", "tutorial3-Publish-Suscribe", "{28F6CDCF-8248-45C5-851F-A6F09E8CC63F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tutorial4", "tutorial4", "{21E7FE55-1282-4FB4-8FD6-01654D0602A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tutorial4-Routing", "tutorial4-Routing", "{21E7FE55-1282-4FB4-8FD6-01654D0602A0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsumidorDirecto", "ConsumidorDirecto\ConsumidorDirecto.csproj", "{C1A29AF9-D076-4BD1-BBCA-52836CE7885C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductorDirecto", "ProductorDirecto\ProductorDirecto.csproj", "{AD97D7D2-493C-4FE0-962F-66B9EF68BBAB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tutorial5", "tutorial5", "{747CF8B9-EC1B-4D82-B746-C50ACA78E8D8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tutorial5-Topics", "tutorial5-Topics", "{747CF8B9-EC1B-4D82-B746-C50ACA78E8D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publicador", "Publicador\Publicador.csproj", "{DB56E95E-2C17-4820-879F-A5EE6210292C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publicador", "Publicador\Publicador.csproj", "{DB56E95E-2C17-4820-879F-A5EE6210292C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Consumer\Consumer.csproj", "{8BC45226-B54C-4BC5-AAE2-6F291F1FAA84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Consumer\Consumer.csproj", "{8BC45226-B54C-4BC5-AAE2-6F291F1FAA84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
