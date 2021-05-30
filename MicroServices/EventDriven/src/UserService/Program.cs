@@ -11,9 +11,16 @@ namespace UserService
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            var publish = CreatePublishBuilder(args).Build();
+            
+            await Task.WhenAny(
+                host.RunAsync(),
+                publish.RunAsync()
+            );
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -21,6 +28,12 @@ namespace UserService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                });
+        public static IHostBuilder CreatePublishBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<EventStartup>();
                 });
     }
 }

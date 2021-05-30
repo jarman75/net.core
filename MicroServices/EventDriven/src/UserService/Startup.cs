@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using UserService.Data;
+using UserService.Publishers;
 
 namespace UserService
 {
@@ -33,6 +34,9 @@ namespace UserService
             
             services.AddDbContext<UserServiceContext>(options =>
                 options.UseSqlite(@"Data Source=user.db"));
+
+            services.AddSingleton<IntegrationEventSenderService>();
+            //services.AddHostedService<IntegrationEventSenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
