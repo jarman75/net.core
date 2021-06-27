@@ -2,14 +2,40 @@ version: '3.4'
 
 services:  
 
+  ##############################
+  # user service + Dapr sidecar
+  ##############################
   userservice:
     image: ${DOCKER_REGISTRY-}userservice
     build:
       context: .
       dockerfile: src/UserService/Dockerfile
+    depends_on:
+      - redis
+      - placement
+    networks:
+      - net-dapr    
 
   userservice-dapr:
-    image: "daprio/daprd:latest"    
-    network_mode: "service:userservice"
+    image: "daprio/daprd:edge"
     depends_on:
       - userservice
+    network_mode: "service:userservice"
+    
+  ############################
+  # Dapr placement service
+  ############################
+  placement:
+    image: "daprio/dapr"    
+    networks:
+      - net-dapr  
+  
+  ############################
+  # Redis state store
+  ############################
+  redis:
+    image: "redis:alpine"    
+    networks:
+      - net-dapr
+networks:
+    net-dapr:  

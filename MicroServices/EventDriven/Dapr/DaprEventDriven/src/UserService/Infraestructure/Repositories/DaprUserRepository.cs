@@ -3,12 +3,12 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using UserService.Models;
 
-namespace UserService.Infraestructure
+namespace UserService.Infraestructure.Repositories
 {
     public class DaprUserRepository : IUserRepository
     {
         private const string StoreName = "statestore";
-        
+
         private readonly ILogger<DaprUserRepository> _logger;
         private readonly DaprClient _dapr;
 
@@ -30,7 +30,7 @@ namespace UserService.Infraestructure
 
         public async Task<User> UpdateUserAsync(User user)
         {
-            var state = await _dapr.GetStateEntryAsync<User>(StoreName, user.Id);            
+            var state = await _dapr.GetStateEntryAsync<User>(StoreName, user.Id);
             state.Value = user;
 
             await state.SaveAsync();

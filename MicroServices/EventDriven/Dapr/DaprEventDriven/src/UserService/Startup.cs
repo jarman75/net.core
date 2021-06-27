@@ -5,8 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using UserService.Infraestructure;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+using UserService.Infraestructure.Filters;
+using UserService.Infraestructure.Repositories;
 using UserService.Models;
+
 
 namespace UserService
 {
@@ -23,13 +27,31 @@ namespace UserService
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddDapr(builder => builder.UseJsonSerializationOptions(new JsonSerializerOptions()
+            services.AddControllers(options =>
             {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-            }));
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                options.Filters.Add(typeof(ValidateModelStateFilter));
+            })
+            .AddDapr()            
+            .AddJsonOptions(optoins =>
+            {
+                optoins.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;                
+                optoins.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                optoins.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            });            
 
-            services.AddSwaggerGen();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "AppOnDapr - USER HTTP API",
+                    Version = "v1",
+                    Description = "The User Service HTTP API"
+                });
+            });
+                
+            services.AddSwaggerGenNewtonsoftSupport();            
 
             services.AddTransient<IUserRepository, DaprUserRepository>();
 
