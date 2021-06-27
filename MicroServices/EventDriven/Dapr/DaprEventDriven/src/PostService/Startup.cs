@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using PostService.Infraestructure.Filters;
+using PostService.Infraestructure.Repositories;
+using PostService.Models;
 using System.Text.Json;
 
 namespace PostService
@@ -20,13 +26,34 @@ namespace PostService
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddDapr(builder => builder.UseJsonSerializationOptions(new JsonSerializerOptions()
+            services.AddControllers(options =>
             {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                PropertyNameCaseInsensitive = true,
-            }));
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                options.Filters.Add(typeof(ValidateModelStateFilter));
+            })
+            .AddDapr()
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
-            services.AddSwaggerGen();
+            });
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "AppOnDapr - POST HTTP API",
+                    Version = "v1",
+                    Description = "The Post Service HTTP API"
+                });
+            });
+
+            services.AddSwaggerGenNewtonsoftSupport();
+
+            services.AddTransient<IPostRepository, DaprPostRepository>();
+
+            services.AddOptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

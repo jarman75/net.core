@@ -31,7 +31,7 @@ namespace UserService.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<User>> PostUser(User value)
+        public async Task<ActionResult<User>> PostUserAsync(User value)
         {   
             return Ok(await _repository.UpdateUserAsync(value));
         }

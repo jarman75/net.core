@@ -38,11 +38,7 @@ namespace UserService.Models
             {
                 System.Net.Mail.MailAddress.TryCreate(Mail, out System.Net.Mail.MailAddress? mail);
                 if (mail is null) results.Add(new ValidationResult("Invalid user mail", new[] { "Mail" }));
-            }
-            
-            
-                
-
+            }            
 
             return results;
         }

@@ -23,7 +23,29 @@ services:
     depends_on:
       - userservice
     network_mode: "service:userservice"
-    
+  
+  ##############################
+  # post service + Dapr sidecar
+  ##############################
+  postservice:
+    image: ${DOCKER_REGISTRY-}postservice
+    build:
+      context: .
+      dockerfile: src/PostService/Dockerfile
+    depends_on:
+      - redis
+      - seq
+      - placement
+      - zipkin
+    networks:
+      - net-dapr    
+  
+  postservice-dapr:
+    image: "daprio/daprd:edge"
+    depends_on:
+      - postservice
+    network_mode: "service:postservice" 
+
   ############################
   # Dapr placement service
   ############################
@@ -48,6 +70,8 @@ services:
     image: openzipkin/zipkin-slim
     networks:
       - net-dapr
+
+  
 
 networks:
     net-dapr:  

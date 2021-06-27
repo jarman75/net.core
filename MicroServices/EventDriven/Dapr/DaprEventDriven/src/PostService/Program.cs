@@ -13,7 +13,7 @@ namespace PostService
     public class Program
     {
         public static readonly string Namespace = typeof(Program).Namespace;
-        public static readonly string AppName = Namespace.Substring(Namespace.LastIndexOf('.', Namespace.LastIndexOf('.') - 1) + 1);
+        public static readonly string AppName = Namespace;
         public static int Main(string[] args)
         {
             var configuration = GetConfiguration();
@@ -23,7 +23,7 @@ namespace PostService
             try
             {
                 Log.Information("Configuring web host ({ApplicationContext})...", AppName);
-                var host = BuildWebHost(configuration, args);
+                var host = CreateHostBuilder(configuration, args).Build();
 
                 Log.Information("Starting web host ({ApplicationContext})...", AppName);
                 host.Run();
@@ -40,6 +40,17 @@ namespace PostService
                 Log.CloseAndFlush();
             }
         }
+
+        public static IHostBuilder CreateHostBuilder(IConfiguration configuration, string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+                    webBuilder.UseConfiguration(configuration);
+                    webBuilder.UseSerilog();
+
+                });
 
         private static IWebHost BuildWebHost(IConfiguration configuration, string[] args) =>
              WebHost.CreateDefaultBuilder(args)
