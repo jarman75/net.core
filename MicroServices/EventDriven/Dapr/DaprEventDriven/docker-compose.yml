@@ -12,7 +12,9 @@ services:
       dockerfile: src/UserService/Dockerfile
     depends_on:
       - redis
+      - seq
       - placement
+      - zipkin
     networks:
       - net-dapr    
 
@@ -37,5 +39,15 @@ services:
     image: "redis:alpine"    
     networks:
       - net-dapr
+  seq:
+    image: datalust/seq:latest
+    networks:
+      - net-dapr
+
+  zipkin:
+    image: openzipkin/zipkin-slim
+    networks:
+      - net-dapr
+
 networks:
     net-dapr:  

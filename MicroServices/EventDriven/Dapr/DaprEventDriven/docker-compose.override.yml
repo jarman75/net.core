@@ -33,3 +33,13 @@ services:
   redis:    
     ports:
       - "6380:6379"
+
+  seq:    
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5340:80"
+ 
+  zipkin:
+    ports:
+      - "5411:9411"
