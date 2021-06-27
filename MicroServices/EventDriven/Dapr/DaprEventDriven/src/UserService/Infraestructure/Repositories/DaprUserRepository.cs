@@ -21,10 +21,13 @@ namespace UserService.Infraestructure.Repositories
         public async Task DeleteUserAsync(string userId)
         {
             await _dapr.DeleteStateAsync(StoreName, userId);
+
+            _logger.LogInformation("User item deleted succesfully.");
         }
 
         public async Task<User> GetUserAsync(string userId)
-        {
+        {            
+
             return await _dapr.GetStateAsync<User>(StoreName, userId);
         }
 

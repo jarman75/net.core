@@ -32,8 +32,16 @@ namespace UserService.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(User), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<User>> PostUser(User value)
-        {
+        {   
             return Ok(await _repository.UpdateUserAsync(value));
+        }
+
+        [HttpDelete]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult> DeleteUser(string id)
+        {
+            await _repository.DeleteUserAsync(id);
+            return Ok();
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using UserService.Infraestructure.Filters;
 using UserService.Infraestructure.Repositories;
 using UserService.Models;
@@ -29,17 +30,16 @@ namespace UserService
 
             services.AddControllers(options =>
             {
-                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-                options.Filters.Add(typeof(ValidateModelStateFilter));
+                 options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                 options.Filters.Add(typeof(ValidateModelStateFilter));
             })
-            .AddDapr()            
-            .AddJsonOptions(optoins =>
+            .AddDapr()
+            .AddNewtonsoftJson(options =>
             {
-                optoins.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;                
-                optoins.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-                optoins.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
-            });            
-
+                options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            
+            });
 
             services.AddSwaggerGen(options =>
             {
