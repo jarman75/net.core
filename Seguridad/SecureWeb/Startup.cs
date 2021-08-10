@@ -32,7 +32,7 @@ namespace SecureWeb
 
             services.AddHttpClient("secure.api", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:7001");
+                c.BaseAddress = new Uri("https://localhost:44345");
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
                 c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Web.Vdc.Encargos");
                 c.DefaultRequestHeaders.Add("ApiKey", "ZtpG?!1bjn$k");

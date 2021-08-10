@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "f3c79513-7d38-4ce4-851e-54a070829dd7",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"MedicoId\": 3158133,\r\n    \"DatosAsegurado\": {\r\n        \"ActuacionId\": 487005317,        \r\n        \"Apellidos\": \"xApellidosAsegurado01-01 xApellidosAsegurado01-02\",\r\n        \"Nombre\": \"xNombreAsegurado01\",            \r\n        \"Sexo\": \"MUJER\",            \r\n        \"FechaNacimiento\": \"1995-12-01T00:00:00\",            \r\n        \"NIF\": \"02-B\",            \r\n        \"Direccion\": \"xDireccion01\",            \r\n        \"CodigoPostal\": \"03006\",            \r\n        \"Poblacion\": \"Alicante\",            \r\n        \"Provincia\": \"Alicante\",            \r\n        \"Telefono\": \"xTelefono01-01\",            \r\n        \"Telefono2\": \"xTelefono01-02\",            \r\n        \"Email\": \"xemail01@correo.com\",            \r\n        \"NoTieneEmail\": false,            \r\n        \"ProfesionId\": 1,   \r\n        \"Profesion\": \"ATS\" ,        \r\n        \"ProfesionOtros\": null,\r\n        \"SituacionLaboralId\": 5, \r\n        \"SituacionLaboral\": \"TAREAS DEL HOGAR EXCLUSIVA\",           \r\n        \"Habilidad\": \"ZURDA\",            \r\n        \"DescripcionFisica\": \"DELGADO\",    \r\n        \"NivelSocioEconomico\": \"BAJO\",            \r\n        \"ActividadDeportivaId\": 1,  \r\n        \"ActividadDeportiva\": \"NO RELEVANTE\",          \r\n        \"ActividadDeportivaOtros\": null\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:57969/WeatherForecast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57969",
+					"path": [
+						"WeatherForecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get city weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"MedicoId\": 3158133,\r\n    \"DatosAsegurado\": {\r\n        \"ActuacionId\": 487005317,        \r\n        \"Apellidos\": \"xApellidosAsegurado01-01 xApellidosAsegurado01-02\",\r\n        \"Nombre\": \"xNombreAsegurado01\",            \r\n        \"Sexo\": \"MUJER\",            \r\n        \"FechaNacimiento\": \"1995-12-01T00:00:00\",            \r\n        \"NIF\": \"02-B\",            \r\n        \"Direccion\": \"xDireccion01\",            \r\n        \"CodigoPostal\": \"03006\",            \r\n        \"Poblacion\": \"Alicante\",            \r\n        \"Provincia\": \"Alicante\",            \r\n        \"Telefono\": \"xTelefono01-01\",            \r\n        \"Telefono2\": \"xTelefono01-02\",            \r\n        \"Email\": \"xemail01@correo.com\",            \r\n        \"NoTieneEmail\": false,            \r\n        \"ProfesionId\": 1,   \r\n        \"Profesion\": \"ATS\" ,        \r\n        \"ProfesionOtros\": null,\r\n        \"SituacionLaboralId\": 5, \r\n        \"SituacionLaboral\": \"TAREAS DEL HOGAR EXCLUSIVA\",           \r\n        \"Habilidad\": \"ZURDA\",            \r\n        \"DescripcionFisica\": \"DELGADO\",    \r\n        \"NivelSocioEconomico\": \"BAJO\",            \r\n        \"ActividadDeportivaId\": 1,  \r\n        \"ActividadDeportiva\": \"NO RELEVANTE\",          \r\n        \"ActividadDeportivaOtros\": null\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:57969/WeatherForecast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "57969",
+					"path": [
+						"WeatherForecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test ocelot",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/developer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"developer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WeatherForeCast with token identity",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://localhost:44313/swagger/oauth2-redirect.html",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "swaggerUI",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "api1",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://localhost:5001/connect/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://localhost:5001/connect/authorize",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "identityToken",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Pass123$",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "master",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "abc",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44313/WeatherForecast",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44313",
+					"path": [
+						"WeatherForecast"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
