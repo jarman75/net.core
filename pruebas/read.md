@@ -12,7 +12,7 @@ Estos productos se dividen en tres categorías:
 El servicio dispone de los siguientes endpoints:
  
 - GET /Store => obtiene inventario de productos y sus existencias.
-- PATCH /Store/SetStockPrice => actualiza precio de las existencias.
+- PATCH /Store/SetStockPrice => actualiza precio (pérdida/ganancia) de las existencias.
 - GET /Store/balance => obtiene el balance de pérdidas y ganancias generadas por el almacenamiento de los productos.
 
 ##Reglas para calcular pérdida/ganancia:
@@ -26,7 +26,7 @@ La ganancia se calcula en base a estos criterios:
 - AñosCalculo = edad - añosAlmacenado 
 	- AñosCalculo 1-5  => se aplica un beneficio del 5% sobre el precio.
 	- AñosCalculo 6-10 => se aplica un beneficio del 10% sobre el precio.
-	- AñosCalculo > 10 => se aplica coeficiente (1 + (AñosCalculo/100)) al precio. 
+	- AñosCalculo > 10 => se aplica beneficio por coeficiente (1 + (AñosCalculo/100)) sobre el precio. 
 
 **Perecederos** =>  no aplica ganancia.
 
@@ -50,7 +50,7 @@ En el desarrollo de los puntos anteriores, tener en cuenta lo siguiente:
 
 - No se podrán cambiar la firma de los métodos actuales de la clase "StoreController.cs"
 - No se podrá cambiar ninguna clase de la carpeta "Data"
-- No se podrá alterar el test existentes en la clase "StoreControllerTests.cs"
+- No se podrán alterar los test existentes en la clase "StoreControllerTests.cs"
 - Se podrán crear nuevas clases y organizarlas como se considere conveniente. 
 - Las métodos públicos de las nuevas clases creadas deberán cubrirse mediante tests unitarios.
 - Todos los tests deberán pasar con el código final presentado.
