@@ -56,7 +56,7 @@ namespace Api.Store.Controllers
                         }
                     }
 
-                    if (item.Category == Category.Aged && stock.ManufacturingDate.HasValue)
+                    if (item.Category == Category.Aged && stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue)
                     {
                         var totalDaysFromManufacturing =  date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.ManufacturingDate.Value.Date).TotalDays;
                         var age = Math.Truncate(totalDaysFromManufacturing / 365);
