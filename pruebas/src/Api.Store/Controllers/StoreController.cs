@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.Store.Data;
 using Api.Store.Domain;
@@ -13,10 +14,12 @@ namespace Api.Store.Controllers
     public class StoreController : ControllerBase
     {
         private readonly StoreContext _context;
+        private readonly IPriceStrategyFactory _factory;
 
-        public StoreController(StoreContext context)
+        public StoreController(StoreContext context, IPriceStrategyFactory factory)
         {
             _context = context;
+            _factory = factory;
         }
 
         [HttpGet]
@@ -36,54 +39,13 @@ namespace Api.Store.Controllers
             foreach (var item in _context.Items.Include(item=>item.Stocks))
             {
                 foreach (var stock in item.Stocks)
-                {   
+                {
 
-                    if (item.Category == Category.Perishable && stock.ExpirationDate.HasValue)
-                    {
-
-                        var expirationDays = stock.ExpirationDate.Value.Date.Subtract(date.GetValueOrDefault(DateTime.Now).Date).Days;
-
-                        if (expirationDays < 1)
-                        {
-                            losses += stock.CostPrice;                            
-                        }
-                        else if (expirationDays < 3)
-                        {
-                            losses += stock.CostPrice / 2;
-                        }
-                        else if (expirationDays < 5)
-                        {
-                            losses += stock.CostPrice / 4;
-                        }
-                    }
-
-                    if (item.Category == Category.Aged && stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue)
-                    {
-                        var totalDaysFromManufacturing =  date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.ManufacturingDate.Value.Date).TotalDays;
-                        var age = Math.Truncate(totalDaysFromManufacturing / 365);
-
-                        var totalDaysFromEntry = date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.Entrydate.Value.Date).TotalDays;
-                        var storeYears = Math.Truncate(totalDaysFromEntry / 365);
-
-                        var computeYears = age - storeYears;
-
-                        if (computeYears > 1)
-                        {
-                            if (computeYears < 5)
-                            {
-                                benefits += stock.CostPrice * 1.05;
-                            }
-                            else if (computeYears < 10)
-                            {
-                                benefits += stock.CostPrice * 1.10;
-                            }
-                            else
-                            {
-                                var coef = 1 + (computeYears / 100);
-                                benefits += stock.CostPrice * coef;
-                            }
-                        }
-                    }
+                    var strategy = _factory.Create(item);
+                    var newPrice = strategy.CalculateCostPrice(stock, date);
+                    var difPrice = newPrice - stock.Price;
+                    if (difPrice < 0) losses += difPrice;
+                    if (difPrice > 0) benefits += difPrice;
                 }
             }
 
@@ -94,11 +56,30 @@ namespace Api.Store.Controllers
         }
 
         [HttpPatch("SetCostPrices")]
-        public IActionResult SetCostPrices(DateTime? date = null, int? category = null)
+        public async Task<IActionResult> SetCostPrices(DateTime? date = null, int? category = null)
         {
-            
-            //TODO: update cost price
-            return new OkObjectResult("6 items have been updated.");
+            int updateItems = 0;
+
+            foreach (var item in _context.Items.Include(item => item.Stocks).Where(p=>category == null || (int)p.Category == category))
+            {
+                foreach (var stock in item.Stocks)
+                {
+
+                    var strategy = _factory.Create(item);
+                    var newPrice = strategy.CalculateCostPrice(stock, date);
+
+                    if (newPrice != stock.Price)
+                    {
+                        stock.Price = newPrice;
+                        updateItems++;
+                    }
+                }
+            }
+
+            if (updateItems > 0) 
+                await _context.SaveChangesAsync();
+
+            return new OkObjectResult($"{updateItems} items have been updated.");
             
         }
     }

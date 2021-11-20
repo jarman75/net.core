@@ -5,9 +5,9 @@ using NUnit.Framework;
 
 namespace Test.Store.Domain.Factory
 {
-    public class CostPriceStrategyFactoryTests
+    public class PriceStrategyFactoryTests
     {
-        private ICostPriceStrategyFactory factory = new CostPriceStrategyFactory();
+        private IPriceStrategyFactory factory = new PriceStrategyFactory();
         
         [Test]
         public void NormalStrategy_instance()
@@ -19,7 +19,7 @@ namespace Test.Store.Domain.Factory
             var strategy = factory.Create(item);
 
             //Assert
-            Assert.IsInstanceOf(typeof(NormalCostPriceStrategy), strategy);
+            Assert.IsInstanceOf(typeof(NormalPriceStrategy), strategy);
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Test.Store.Domain.Factory
             var strategy = factory.Create(item);
 
             //Assert
-            Assert.IsInstanceOf(typeof(AgedCostPriceStrategy), strategy);
+            Assert.IsInstanceOf(typeof(AgedPriceStrategy), strategy);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Test.Store.Domain.Factory
             var strategy = factory.Create(item);
 
             //Assert
-            Assert.IsInstanceOf(typeof(PerishableCostPriceStrategy), strategy);
+            Assert.IsInstanceOf(typeof(PerishablePriceStrategy), strategy);
         }
     }
 }

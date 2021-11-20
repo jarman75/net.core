@@ -2,13 +2,13 @@
 
 namespace Api.Store.Domain.Strategies
 {
-    public class PerishableCostPriceStrategy : ICostPriceStrategy
+    public class PerishablePriceStrategy : IPriceStrategy
     {
         public double CalculateCostPrice(ItemStock stock, DateTime? date = null)
         {
-            double result = stock.CostPrice;
+            double result = stock.Price;
 
-            if (stock.CostPrice > 0 && stock.ExpirationDate.HasValue)
+            if (stock.Price > 0 && stock.ExpirationDate.HasValue)
             {
 
                 var expirationDays = stock.ExpirationDate.Value.Date.Subtract(date.GetValueOrDefault(DateTime.Now).Date).Days;

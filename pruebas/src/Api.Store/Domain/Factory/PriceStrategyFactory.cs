@@ -2,26 +2,26 @@
 
 namespace Api.Store.Domain.Factory
 {
-    public class CostPriceStrategyFactory : ICostPriceStrategyFactory
+    public class PriceStrategyFactory : IPriceStrategyFactory
     {
-        public ICostPriceStrategy Create(Item item)
+        public IPriceStrategy Create(Item item)
         {
 
-            ICostPriceStrategy result = null; 
+            IPriceStrategy result = null; 
             
             switch (item.Category)
             {
                 case Category.Normal:
-                    result = new NormalCostPriceStrategy();
+                    result = new NormalPriceStrategy();
                     break;
                 case Category.Aged:
-                    result = new AgedCostPriceStrategy();
+                    result = new AgedPriceStrategy();
                     break;
                 case Category.Perishable:
-                    result = new PerishableCostPriceStrategy();
+                    result = new PerishablePriceStrategy();
                     break;             
                 default:
-                    result = new NormalCostPriceStrategy();
+                    result = new NormalPriceStrategy();
                     break;
             }
 

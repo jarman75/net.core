@@ -2,11 +2,11 @@
 
 namespace Api.Store.Domain.Strategies
 {
-    public class AgedCostPriceStrategy : ICostPriceStrategy
+    public class AgedPriceStrategy : IPriceStrategy
     {
         public double CalculateCostPrice(ItemStock stock, DateTime? date)
         {
-            double result = stock.CostPrice;
+            double result = stock.Price;
 
             if (stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue)
             {

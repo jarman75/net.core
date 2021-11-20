@@ -2,11 +2,11 @@
 
 namespace Api.Store.Domain.Strategies
 {
-    public class NormalCostPriceStrategy : ICostPriceStrategy
+    public class NormalPriceStrategy : IPriceStrategy
     {
         public double CalculateCostPrice(ItemStock stock, DateTime? date = null)
         {
-            return stock.CostPrice;
+            return stock.Price;
         }
     }
 }
