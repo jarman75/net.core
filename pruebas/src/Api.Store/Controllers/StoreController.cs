@@ -49,14 +49,14 @@ namespace Api.Store.Controllers
                 }
             }
 
-            result.Losses = Math.Round(losses,2);
+            result.Losses = Math.Abs(Math.Round(losses,2));
             result.Benefits = Math.Round(benefits,2);
             
             return Task.FromResult(result);
         }
 
-        [HttpPatch("SetCostPrices")]
-        public async Task<IActionResult> SetCostPrices(DateTime? date = null, int? category = null)
+        [HttpPatch("SetStocksPrice")]
+        public async Task<IActionResult> SetStocksPrice(DateTime? date = null, int? category = null)
         {
             int updateItems = 0;
 

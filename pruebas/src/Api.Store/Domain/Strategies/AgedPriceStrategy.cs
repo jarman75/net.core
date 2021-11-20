@@ -8,7 +8,7 @@ namespace Api.Store.Domain.Strategies
         {
             double result = stock.Price;
 
-            if (stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue)
+            if (stock.Price > 0 && stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue)
             {
 
                 var totalDaysFromManufacturing = date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.ManufacturingDate.Value.Date).TotalDays;

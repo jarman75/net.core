@@ -6,26 +6,13 @@ namespace Api.Store.Domain.Factory
     {
         public IPriceStrategy Create(Item item)
         {
-
-            IPriceStrategy result = null; 
-            
-            switch (item.Category)
+            return item.Category switch
             {
-                case Category.Normal:
-                    result = new NormalPriceStrategy();
-                    break;
-                case Category.Aged:
-                    result = new AgedPriceStrategy();
-                    break;
-                case Category.Perishable:
-                    result = new PerishablePriceStrategy();
-                    break;             
-                default:
-                    result = new NormalPriceStrategy();
-                    break;
-            }
-
-            return result;
+                Category.Normal => new NormalPriceStrategy(),
+                Category.Aged => new AgedPriceStrategy(),
+                Category.Perishable => new PerishablePriceStrategy(),
+                _ => new NormalPriceStrategy(),
+            };
         }
     }
 }
