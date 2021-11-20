@@ -37,7 +37,7 @@ namespace Api.Store.Controllers
                 foreach (var stock in item.Stocks)
                 {   
 
-                    if (item.Category == Category.Perishable && stock.ExpirationDate.HasValue)
+                    if (item.Category == Category.Perishable && stock.ExpirationDate.HasValue && stock.Price > 0)
                     {
 
                         var expirationDays = stock.ExpirationDate.Value.Date.Subtract(date.GetValueOrDefault(DateTime.Now).Date).Days;
@@ -56,7 +56,7 @@ namespace Api.Store.Controllers
                         }
                     }
 
-                    if (item.Category == Category.Aged && stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue)
+                    if (item.Category == Category.Aged && stock.ManufacturingDate.HasValue && stock.Entrydate.HasValue && stock.Price > 0)
                     {
                         var totalDaysFromManufacturing =  date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.ManufacturingDate.Value.Date).TotalDays;
                         var age = Math.Truncate(totalDaysFromManufacturing / 365);

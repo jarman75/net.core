@@ -35,10 +35,10 @@ namespace Test.Store.Controllers
 
         }
         [Test]
-        public async Task SetCostPrices()
+        public async Task SetStocksPrice()
         {
             //Act 
-            var response = await _client.PatchAsync("/Store/SetCostPrices", null);
+            var response = await _client.PatchAsync("/Store/SetStocksPrice", null);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
 
