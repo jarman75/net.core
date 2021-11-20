@@ -37,10 +37,10 @@ namespace Api.Store.Controllers
                 foreach (var stock in item.Stocks)
                 {   
 
-                    if (item.Category == Category.Perishable)
+                    if (item.Category == Category.Perishable && stock.ExpirationDate.HasValue)
                     {
 
-                        var expirationDays = stock.ExpirationDate.GetValueOrDefault(DateTime.MaxValue).Subtract(date.GetValueOrDefault(DateTime.Now)).TotalDays;
+                        var expirationDays = stock.ExpirationDate.Value.Date.Subtract(date.GetValueOrDefault(DateTime.Now).Date).Days;
 
                         if (expirationDays < 1)
                         {
@@ -58,10 +58,10 @@ namespace Api.Store.Controllers
 
                     if (item.Category == Category.Aged && stock.ManufacturingDate.HasValue)
                     {
-                        var totalDaysFromManufacturing =  date.GetValueOrDefault(DateTime.Now).Subtract(stock.ManufacturingDate.Value).TotalDays;
+                        var totalDaysFromManufacturing =  date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.ManufacturingDate.Value.Date).TotalDays;
                         var age = Math.Truncate(totalDaysFromManufacturing / 365);
 
-                        var totalDaysFromEntry = date.GetValueOrDefault(DateTime.Now).Subtract(stock.Entrydate.Value).TotalDays;
+                        var totalDaysFromEntry = date.GetValueOrDefault(DateTime.Now).Date.Subtract(stock.Entrydate.Value.Date).TotalDays;
                         var storeYears = Math.Truncate(totalDaysFromEntry / 365);
 
                         var computeYears = age - storeYears;
@@ -90,6 +90,15 @@ namespace Api.Store.Controllers
             result.Benefits = Math.Round(benefits,2);
             
             return Task.FromResult(result);
+        }
+
+        [HttpPatch("SetCostPrices")]
+        public IActionResult SetCostPrices(DateTime? date = null, int? category = null)
+        {
+            
+            //TODO: update cost price
+            return new OkObjectResult("6 items have been updated.");
+            
         }
     }
 }

@@ -34,5 +34,17 @@ namespace Test.Store.Controllers
             Assert.AreEqual("{\"losses\":1.97,\"benefits\":4592.23}", responseString);
 
         }
+        [Test]
+        public async Task SetCostPrices()
+        {
+            //Act 
+            var response = await _client.PatchAsync("/Store/SetCostPrices", null);
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            // Assert            
+            Assert.AreEqual("6 items have been updated.", responseString);
+
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Api.Store.Data
                     {
                         Id = Guid.Parse("1d3ab58e-0482-4dbb-8ac0-72117580e758"),
                         ItemId = Guid.Parse("53519ebf-9417-484e-b0a6-e78d44c6b2ad"),
-                        ExpirationDate = DateTime.Now.AddDays(5),
+                        ExpirationDate = DateTime.Now.AddDays(4),
                         ManufacturingDate = DateTime.Now.AddDays(-7),
                         Entrydate = DateTime.Now.AddDays(-7),
                         CostPrice = 1.05,
@@ -28,7 +28,7 @@ namespace Api.Store.Data
                     {
                         Id = Guid.Parse("721a379a-cedb-4a47-ad03-0fe9af994433"),
                         ItemId = Guid.Parse("53519ebf-9417-484e-b0a6-e78d44c6b2ad"),
-                        ExpirationDate = DateTime.Now.AddDays(3),
+                        ExpirationDate = DateTime.Now.AddDays(2),
                         ManufacturingDate = DateTime.Now.AddDays(-4),
                         Entrydate = DateTime.Now.AddDays(-4),
                         CostPrice = 1.05,
@@ -38,7 +38,7 @@ namespace Api.Store.Data
                     {
                         Id = Guid.Parse("61259bd6-634c-4a6a-a1ab-3910fde293e9"),
                         ItemId = Guid.Parse("53519ebf-9417-484e-b0a6-e78d44c6b2ad"),
-                        ExpirationDate = DateTime.Now.AddDays(1),
+                        ExpirationDate = DateTime.Now,
                         ManufacturingDate = DateTime.Now.AddDays(-3),
                         Entrydate = DateTime.Now.AddDays(-3),
                         CostPrice = 1.18,
