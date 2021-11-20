@@ -70,16 +70,16 @@ namespace Api.Store.Controllers
                         {
                             if (computeYears <= 5)
                             {
-                                benefits += stock.Price + (stock.Price * 1.05);
+                                benefits += (stock.Price * 1.05) - stock.Price;
                             }
                             else if (computeYears <= 10)
                             {
-                                benefits += stock.Price + (stock.Price * 1.10);
+                                benefits += (stock.Price * 1.10) - stock.Price;
                             }
                             else
                             {
                                 var coef = 1 + (computeYears / 100);
-                                benefits += stock.Price + (stock.Price * coef);
+                                benefits += (stock.Price * coef) - stock.Price;
                             }
                         }
                     }
@@ -92,8 +92,8 @@ namespace Api.Store.Controllers
             return Task.FromResult(result);
         }
 
-        [HttpPatch("SetCostPrices")]
-        public IActionResult SetCostPrices(DateTime? date = null, int? category = null)
+        [HttpPatch("SetStocksPrice")]
+        public IActionResult SetStocksPrice(DateTime? date = null, int? category = null)
         {
             
             //TODO: update cost price

@@ -11,10 +11,11 @@ Estos productos se dividen en tres categorías:
 
 El servicio dispone de los siguientes endpoints:
  
-/Store => obtiene inventario de productos y sus existencias.
-/Store/balance => obtiene el balance de pérdidas y ganancias generadas por el almacenamiento de los productos.
+- GET /Store => obtiene inventario de productos y sus existencias.
+- PATCH /Store/SetStockPrice => actualiza precio de las existencias.
+- GET /Store/balance => obtiene el balance de pérdidas y ganancias generadas por el almacenamiento de los productos.
 
-##Reglas calcular pérdida/ganancia:
+##Reglas para calcular pérdida/ganancia:
  
 **Añejos** => no aplica pérdida.
 
@@ -32,8 +33,8 @@ La ganancia se calcula en base a estos criterios:
 La pérdida se calcula en base a estos criterios:
 
 - <= 1 día para caducar => se aplica pérdida = precio.
-- Entre 2 y 3 días para caducar => se aplica pérdida => precio / 2.
-- Entre 4 y 5 días para caducar => se aplica pérdida => precio / 4.
+- Entre 2 y 3 días para caducar => se aplica pérdida = precio / 2.
+- Entre 4 y 5 días para caducar => se aplica pérdida = precio / 4.
 
 **Normales** => no aplica ni pérdida ni ganancia.
 
@@ -42,7 +43,7 @@ La pérdida se calcula en base a estos criterios:
 
 1.- Refactorizar el código del método "GetBalance" que calcula el balance de pérdidas/ganancias dentro del controlador "StoreController.cs" con el objetivo de facilitar su legibilidad y mantenimiento.
 
-2.- Añadir nuevo endpoint para actualizar el precio de coste de todo el inventario de la tienda aplicando su pérdida o ganancia a una fecha opcionalmente dada (por defecto fecha actual).   
+2.- Añadir código en el método "SetStocksPrice" del controlador "StoreController.cs" para actualizar el precio de todo el inventario de la tienda aplicando pérdida o ganancia a una fecha opcionalmente dada (por defecto fecha actual) y categoría opcional (por defecto todas).   
 
 
 En el desarrollo de los puntos anteriores, tener en cuenta lo siguiente:
