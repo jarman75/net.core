@@ -31,7 +31,7 @@ namespace Test.Store.Controllers
             var responseString = await response.Content.ReadAsStringAsync();
 
             // Assert            
-            Assert.AreEqual("{\"losses\":1.97,\"benefits\":4592.23}", responseString);
+            Assert.AreEqual("{\"losses\":2.92,\"benefits\":10434.52}", responseString);
 
         }
         [Test]

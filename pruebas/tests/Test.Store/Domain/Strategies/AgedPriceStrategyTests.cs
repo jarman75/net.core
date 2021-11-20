@@ -22,7 +22,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ManufacturingDate = DateTime.Now.AddYears(-4), Entrydate = DateTime.Now.AddYears(-1) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(105d, newPrice, 0.02d);
@@ -35,7 +35,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ManufacturingDate = DateTime.Now.AddYears(-9), Entrydate = DateTime.Now.AddYears(-1) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(110d, newPrice, 0.02d);
@@ -48,7 +48,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ManufacturingDate = DateTime.Now.AddYears(-12), Entrydate = DateTime.Now.AddYears(-1) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(111d, newPrice, 0.02d);
@@ -61,7 +61,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ManufacturingDate = null, Entrydate = DateTime.Now.AddYears(-1) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(100d, newPrice, 0.02d);
@@ -71,10 +71,10 @@ namespace Test.Store.Domain.Strategies
         public void No_required_ComputeYears()
         {
             //Arrange
-            var stock = new ItemStock { Price = 100, ManufacturingDate = DateTime.Now.AddYears(-2), Entrydate = DateTime.Now.AddYears(-1) };
+            var stock = new ItemStock { Price = 100, ManufacturingDate = DateTime.Now.AddYears(-1), Entrydate = DateTime.Now.AddYears(-1) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(100d, newPrice, 0.02d);

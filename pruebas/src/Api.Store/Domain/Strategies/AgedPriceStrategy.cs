@@ -4,7 +4,7 @@ namespace Api.Store.Domain.Strategies
 {
     public class AgedPriceStrategy : IPriceStrategy
     {
-        public double CalculateCostPrice(ItemStock stock, DateTime? date)
+        public double CalculatePrice(ItemStock stock, DateTime? date)
         {
             double result = stock.Price;
 
@@ -19,13 +19,13 @@ namespace Api.Store.Domain.Strategies
 
                 var computeYears = age - storeYears;
 
-                if (computeYears > 1 && computeYears < 5)
+                if (computeYears >= 1 && computeYears <= 5)
                     result *= 1.05;
 
-                if (computeYears > 5 && computeYears < 10)
+                if (computeYears >= 6 && computeYears <= 10)
                     result *= 1.10;
 
-                if (computeYears >= 10)
+                if (computeYears > 10)
                     result *= 1 + (computeYears / 100);
             }
 

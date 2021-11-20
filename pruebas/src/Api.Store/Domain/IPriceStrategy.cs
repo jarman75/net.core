@@ -4,6 +4,6 @@ namespace Api.Store.Domain
 {
     public interface IPriceStrategy
     {
-        double CalculateCostPrice(ItemStock stock, DateTime? date = null);
+        double CalculatePrice(ItemStock stock, DateTime? date = null);
     }
 }

@@ -42,7 +42,7 @@ namespace Api.Store.Controllers
                 {
 
                     var strategy = _factory.Create(item);
-                    var newPrice = strategy.CalculateCostPrice(stock, date);
+                    var newPrice = strategy.CalculatePrice(stock, date);
                     var difPrice = newPrice - stock.Price;
                     if (difPrice < 0) losses += difPrice;
                     if (difPrice > 0) benefits += difPrice;
@@ -66,7 +66,7 @@ namespace Api.Store.Controllers
                 {
 
                     var strategy = _factory.Create(item);
-                    var newPrice = strategy.CalculateCostPrice(stock, date);
+                    var newPrice = strategy.CalculatePrice(stock, date);
 
                     if (newPrice != stock.Price)
                     {

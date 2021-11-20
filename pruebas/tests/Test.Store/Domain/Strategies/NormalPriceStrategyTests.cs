@@ -21,7 +21,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100 };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(100, newPrice, 0.02d);

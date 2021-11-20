@@ -22,7 +22,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ExpirationDate = DateTime.Now };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(0, newPrice, 0.02d);
@@ -35,7 +35,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ExpirationDate = DateTime.Now.AddDays(2) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(50, newPrice, 0.02d);
@@ -47,7 +47,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ExpirationDate = DateTime.Now.AddDays(4) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(25, newPrice, 0.02d);
@@ -60,7 +60,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 0, ExpirationDate = DateTime.Now.AddDays(2) };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(0, newPrice, 0.02d);
@@ -73,7 +73,7 @@ namespace Test.Store.Domain.Strategies
             var stock = new ItemStock { Price = 100, ExpirationDate = null };
 
             //Act
-            var newPrice = strategy.CalculateCostPrice(stock);
+            var newPrice = strategy.CalculatePrice(stock);
 
             //Assert
             Assert.AreEqual(100, newPrice, 0.02d);
