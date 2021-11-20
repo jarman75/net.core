@@ -23,17 +23,17 @@ La ganancia se calcula en base a estos criterios:
 - Edad: años transcurridos desde su fecha de fabricación.
 - AñosAlmacenado: años transcurridos desde la fecha de entrada en almacén.
 - AñosCalculo = edad - añosAlmacenado 
-	- AñosCalculo > 5 => se aplica un beneficio del 5% sobre el precio de coste.
-	- AñosCalculo < 10 => se aplica un beneficio del 10% sobre el precio de coste.
-	- AñosCalculo > 10 => se aplica coeficiente (1 + (AñosCalculo/100)) al precio de coste. 
+	- AñosCalculo 1-5  => se aplica un beneficio del 5% sobre el precio.
+	- AñosCalculo 6-10 => se aplica un beneficio del 10% sobre el precio.
+	- AñosCalculo > 10 => se aplica coeficiente (1 + (AñosCalculo/100)) al precio. 
 
 **Perecederos** =>  no aplica ganancia.
 
 La pérdida se calcula en base a estos criterios:
 
-- Si queda menos de 1 día para caducar => se aplica pérdida = precio coste.
-- Si queda entre 3 y 1 días para caducar => se aplica pérdida => precio coste / 2.
-- Si falta entre 5 y 3 días para caducar => se aplica pérdida => precio coste / 4.
+- <= 1 día para caducar => se aplica pérdida = precio.
+- Entre 2 y 3 días para caducar => se aplica pérdida => precio / 2.
+- Entre 4 y 5 días para caducar => se aplica pérdida => precio / 4.
 
 **Normales** => no aplica ni pérdida ni ganancia.
 

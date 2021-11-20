@@ -42,17 +42,17 @@ namespace Api.Store.Controllers
 
                         var expirationDays = stock.ExpirationDate.Value.Date.Subtract(date.GetValueOrDefault(DateTime.Now).Date).Days;
 
-                        if (expirationDays < 1)
+                        if (expirationDays <= 1)
                         {
-                            losses += stock.CostPrice;                            
+                            losses += stock.Price;                            
                         }
-                        else if (expirationDays < 3)
+                        else if (expirationDays <= 3)
                         {
-                            losses += stock.CostPrice / 2;
+                            losses +=  stock.Price -  (stock.Price / 2);
                         }
-                        else if (expirationDays < 5)
+                        else if (expirationDays <= 5)
                         {
-                            losses += stock.CostPrice / 4;
+                            losses += stock.Price - (stock.Price / 4);
                         }
                     }
 
@@ -66,20 +66,20 @@ namespace Api.Store.Controllers
 
                         var computeYears = age - storeYears;
 
-                        if (computeYears > 1)
+                        if (computeYears >= 1)
                         {
-                            if (computeYears < 5)
+                            if (computeYears <= 5)
                             {
-                                benefits += stock.CostPrice * 1.05;
+                                benefits += stock.Price + (stock.Price * 1.05);
                             }
-                            else if (computeYears < 10)
+                            else if (computeYears <= 10)
                             {
-                                benefits += stock.CostPrice * 1.10;
+                                benefits += stock.Price + (stock.Price * 1.10);
                             }
                             else
                             {
                                 var coef = 1 + (computeYears / 100);
-                                benefits += stock.CostPrice * coef;
+                                benefits += stock.Price + (stock.Price * coef);
                             }
                         }
                     }
