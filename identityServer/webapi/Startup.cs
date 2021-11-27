@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityModel.AspNetCore.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,10 +29,14 @@ namespace webapi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;                
+                
+            });
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            services.AddAuthentication("token")
+                .AddJwtBearer("token", options =>
                 {
                     options.Authority = "https://localhost:5001";
 
@@ -41,7 +46,18 @@ namespace webapi
                     // IdentityServer emits a typ header by default, recommended extra check
                     options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
 
-                });
+                    // if token does not contain a dot, it is a reference token
+                    options.ForwardDefaultSelector = Selector.ForwardReferenceToken("introspection");
+
+                })
+                 // reference tokens
+                 .AddOAuth2Introspection("introspection", options =>
+                 {
+                     options.Authority = "https://localhost:5001";
+
+                     options.ClientId = "api1";
+                     options.ClientSecret = "4HGYugUKMklfReduECoo6bBigov3pR/Y7URi9T4CBdk=";
+                 });
 
             services.AddSwaggerGen(c =>
             {

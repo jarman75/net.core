@@ -27,7 +27,8 @@ namespace is4AspId
             {
                 new ApiResource("api1", "WeatherForecast api")
                 {
-                    Scopes = {"api1"}
+                    Scopes = {"api1"},
+                    ApiSecrets =  { new Secret("amarillo".Sha256()) }
                 }
             };
 
@@ -62,6 +63,27 @@ namespace is4AspId
                     AllowedCorsOrigins = { "https://localhost:44313" },
                     AllowedScopes = { "api1" },                    
                     
+                },
+                // interactive client using code flow + pkce
+                new Client
+                {
+                    ClientId = "BlazorApp",
+                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+
+                    //where to redirect to after login                
+                    RedirectUris = { "https://localhost:44361/signin-oidc" },
+
+                    //where to redirect to after logout
+                    PostLogoutRedirectUris = { "http://localhost:44361/signout-callback-oidc" },
+
+
+                    AllowedCorsOrigins = { "https://localhost:44361" },
+                    AllowedScopes = { "openid", "profile", "api1" },
+
                 },
             };
     }
