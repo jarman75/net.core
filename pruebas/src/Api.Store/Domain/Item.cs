@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Api.Store.Data
+namespace Api.Store.Domain
 {
     public class Item
     {

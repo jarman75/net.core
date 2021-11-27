@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Store.Data;
+using Api.Store.Domain;
+using Api.Store.Domain.Factory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +35,7 @@ namespace Api.Store
             services.AddDbContext<StoreContext>(options => 
             options.UseInMemoryDatabase(databaseName: "STORE").ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
 
+            services.AddScoped<IPriceStrategyFactory, PriceStrategyFactory>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
