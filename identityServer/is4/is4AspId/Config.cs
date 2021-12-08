@@ -68,17 +68,32 @@ namespace is4AspId
                 new Client
                 {
                     ClientId = "BlazorApp",
+                    ClientName = "Bazoa web app",
                     ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+                    ClientUri = "https://localhost:44361",
 
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
-                    RequireClientSecret = false,
+
+                    AlwaysIncludeUserClaimsInIdToken = true,
+
+                    EnableLocalLogin = true,
+                    RequireConsent = false,
+                    
+                    AllowOfflineAccess = false,                                        
+                    IdentityTokenLifetime = 10,
+                    AccessTokenLifetime = 10, 
+                    UserSsoLifetime = 10,                       
+                    
+                    
+                    
 
                     //where to redirect to after login                
                     RedirectUris = { "https://localhost:44361/signin-oidc" },
-
                     //where to redirect to after logout
                     PostLogoutRedirectUris = { "http://localhost:44361/signout-callback-oidc" },
+                    //FrontChannelLogoutUri = "https://localhost:44361/signout-oidc",
+
 
 
                     AllowedCorsOrigins = { "https://localhost:44361" },

@@ -39,6 +39,14 @@ namespace is4AspId
 
             var builder = services.AddIdentityServer(options =>
             {
+
+
+                options.Authentication.CheckSessionCookieName = "auth-cookie";
+                options.Authentication.CookieLifetime = new System.TimeSpan(0, 0, 10);
+                options.Authentication.CookieSlidingExpiration = false;
+
+                options.Csp.Level = IdentityServer4.Models.CspLevel.Two;
+
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
@@ -56,7 +64,7 @@ namespace is4AspId
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            services.AddAuthentication()
+            services.AddAuthentication()                
                 .AddGoogle(options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;

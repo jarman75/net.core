@@ -39,7 +39,12 @@ namespace BlazorApp
                 options.DefaultScheme = "Cookies";
                 options.DefaultChallengeScheme = "oidc";
             })
-            .AddCookie("Cookies")
+             .AddCookie("Cookies", options =>
+             {
+                 options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+                 options.SlidingExpiration = false;
+                 options.Cookie.Name = "blazor-cookie";
+             })
             .AddOpenIdConnect("oidc", options =>
             {
                 options.Authority = "https://localhost:5001";
@@ -50,17 +55,28 @@ namespace BlazorApp
 
                 // code flow + PKCE (PKCE is turned on by default)
                 options.ResponseType = "code";
+                options.UsePkce = true;
 
                 // keeps id_token smaller
-                options.GetClaimsFromUserInfoEndpoint = true;
                 options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+                
+                
 
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
+                //options.Events.OnRedirectToIdentityProvider = context =>
+                //{
+                //    context.ProtocolMessage.Prompt = "login";
+                //    return Task.CompletedTask;
+                //};
 
+                //options.TokenValidationParameters = new TokenValidationParameters
+                //{
+                //    NameClaimType = "name",
+                //    RoleClaimType = "role"
+                //};
+
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");                
                 options.Scope.Add("api1");
                 
             });
@@ -132,8 +148,9 @@ namespace BlazorApp
 
             app.UseRouting();
 
-            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseAuthentication();
+            
 
             app.UseEndpoints(endpoints =>
             {
