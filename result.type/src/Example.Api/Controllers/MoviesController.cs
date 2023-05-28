@@ -38,7 +38,17 @@ public class MoviesController : ControllerBase
             success => Ok(success),
             failure => NotFound());
     }
-
-    //get a empty guid
-    //0d0d0d0d-0d0d-0d0d-0d0d-0d0d0d0d0d0d
+    //update movie using update movie command
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateMovie(Guid id, UpdateMovieCommand request)
+    {
+        request.Id = id;
+        var result = await _mediator.Send(request);
+        return result.Match<IActionResult>(
+            success => NoContent(),
+            failure => BadRequest(failure.ValidationResult.Errors.Select(x => x.ErrorMessage)));
+    }
+   //get a empty guid
+   // var guid= "00000000-0000-0000-0000-000000000000"; 
+   
 }
