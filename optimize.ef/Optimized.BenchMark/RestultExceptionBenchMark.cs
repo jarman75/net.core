@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
+using EfQuerysOptimized;
 
 namespace Optimized.BenchMark;
 
@@ -14,9 +15,12 @@ public class RestultExceptionBenchMark
         throw new Exception("Error");
     }
     
-    private string GetResult()
+    private Result<string, ValidationFailed> GetResult()
     {
-        return "Error";
+        var fail = new ValidationFailed("General", "Error");
+        var response = new Result<string, ValidationFailed>(fail);
+        return response;             
+        
     }
 
     [Benchmark]
@@ -28,6 +32,9 @@ public class RestultExceptionBenchMark
     [Benchmark]
     public string GetResultBenchmark()
     {
-        return GetResult();
+        return GetResult()
+        .Match(
+            success => success,
+            failure => failure.ValidationResult["General"]);;
     }
 }
