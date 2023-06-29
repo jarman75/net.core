@@ -1,16 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Example.Api.Features;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Example.Api.Controllers;
 
+public class BaseApiController : ControllerBase
+{
+    protected IActionResult GetErrorActionResult(ErrorResult failure)
+    {
+        return failure.ErrorCode switch
+        {
+            ErrorCode.Unauthorized => Unauthorized(failure),
+            ErrorCode.Forbidden => Forbid(),
+            ErrorCode.ValidationError => BadRequest(failure),
+            ErrorCode.NotFound => NotFound(failure),                       
+            _ => StatusCode(500, failure)
+        };
+    }
+}
+
 [ApiController]
 [Route("api/[controller]")]
-public class MoviesController : ControllerBase
+public class MoviesController : BaseApiController
 {
     readonly IMediator _mediator;
 
@@ -25,30 +36,10 @@ public class MoviesController : ControllerBase
     {
         var result = await _mediator.Send(request);
         return result.Match<IActionResult>(
-            success => CreatedAtAction(nameof(GetMovie), new {id = success.Id}, success),
-            failure => BadRequest(failure.ValidationResult.Errors.Select(x => x.ErrorMessage)));
+            success => Ok(success),
+            failure => GetErrorActionResult(failure)            
+        );
     }
 
-    //get for get movie by id
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetMovie(Guid id)
-    {
-        var result = await _mediator.Send(new GetMovieByIdQuery(id));
-        return result.Match<IActionResult>(
-            success => Ok(success),
-            failure => NotFound());
-    }
-    //update movie using update movie command
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateMovie(Guid id, UpdateMovieCommand request)
-    {
-        request.Id = id;
-        var result = await _mediator.Send(request);
-        return result.Match<IActionResult>(
-            success => NoContent(),
-            failure => BadRequest(failure.ValidationResult.Errors.Select(x => x.ErrorMessage)));
-    }
-   //get a empty guid
-   // var guid= "00000000-0000-0000-0000-000000000000"; 
-   
+    
 }

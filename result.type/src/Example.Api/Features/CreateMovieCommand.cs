@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Example.Api.Features;
 
-public class CreateMovieCommand : IRequest<Result<Movie, ValidationFailed>>
+public class CreateMovieCommand : IRequest<Result<Movie, ErrorResult>>
 {
     public required string Title { get; set; }   
     public required string Director { get; set; }
@@ -34,26 +34,30 @@ public class CreateMovieValidator : AbstractValidator<CreateMovieCommand>
     }
 }
 
-public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, Result<Movie, ValidationFailed>>
+public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, Result<Movie, ErrorResult>>
 {
-    private readonly IMediator _mediator;
+    
 
-    public CreateMovieCommandHandler(IMediator mediator) => _mediator = mediator;
-
-    public async Task<Result<Movie, ValidationFailed>> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Movie, ErrorResult>> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
     {
         
+        if (request.Title == "x")
+        {
+            return new ErrorResult(ErrorCode.Unauthorized, "User not authorized");
+        }
 
         var validator = new CreateMovieValidator();
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {
-            return new ValidationFailed(validationResult);
+            return new ErrorResult(ErrorCode.ValidationError, validationResult?.Errors?.FirstOrDefault()?.ErrorMessage ?? "Validation error");
         }
 
         if(request.Director == "the invisible") {
-            return new ValidationFailed("Director", "The director invisible is not allowed");
+            return new ErrorResult(ErrorCode.NotFound, "Director");
         }
+
+
 
         var movie = new Movie
         {
