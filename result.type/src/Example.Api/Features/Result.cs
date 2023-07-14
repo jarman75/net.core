@@ -1,8 +1,6 @@
-using FluentValidation.Results;
-
 namespace Example.Api.Features;
 
-public readonly struct Result<TValue, TError>
+public readonly struct Result<TValue, TError> where TError : ErrorResult
 {
    private readonly TValue? _value;
    private readonly TError? _error;
@@ -33,16 +31,29 @@ public readonly struct Result<TValue, TError>
         !IsError ? success(_value!) : failure(_error!);
 }
 
-public class ValidationFailed
+
+public class ErrorResult
 {
-    public ValidationFailed(ValidationResult validationResult) => ValidationResult = validationResult;
-    public ValidationFailed(string property, string message) => ValidationResult = new ValidationResult(new[] { new ValidationFailure(property, message) });
-    public ValidationResult ValidationResult { get; }
-     
+    public ErrorResult(ErrorCode errorCode, string internalErrorMessage)
+    {
+        ErrorCode = errorCode;
+        InternalErrorMessage = internalErrorMessage;
+    }
+
+    public ErrorCode ErrorCode { get; set; }
+    public string? ErrorCodeDescription => Enum.GetName(ErrorCode);
+    public string InternalErrorMessage { get; set; }
 }
 
-public class NotFoundFailed
+
+public enum ErrorCode
 {
-    public NotFoundFailed(Guid id) => Id = id;
-    public Guid Id { get; }
+    Unauthorized = 100,  //generice unauthorized    
+    
+    Forbidden = 200,
+
+    NotFound = 300, //generic not found   
+    
+    ValidationError = 400, //generic validation error   
+    
 }
