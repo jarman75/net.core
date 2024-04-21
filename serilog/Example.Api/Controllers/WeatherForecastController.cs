@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -24,18 +25,26 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        
+        
+        var response = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         })
         .ToArray();
+
+        _diagnosticContext.Set("ResponseBody", response, destructureObjects: true);
+
+        return response;
     }
     [HttpPost(Name = "PostWeatherForecast")]
     public IActionResult Post([FromBody] WeatherForecast weatherForecast)
     {
-        _diagnosticContext.Set("Date", weatherForecast.Date);
+        
+        _diagnosticContext.Set("RequestBody", weatherForecast, destructureObjects: true);
+        
         return Ok(weatherForecast);
     }
 }
