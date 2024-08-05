@@ -5,6 +5,7 @@ namespace EventSourcingTutorianl;
 public class StudentDataBase
 {
     readonly Dictionary<Guid, SortedList<DateTime, Event>> _studentsEvents = [];
+    readonly Dictionary<Guid, Student> _students = [];
     
     public void Append(Event @event)
     {
@@ -16,7 +17,14 @@ public class StudentDataBase
             _studentsEvents[@event.StreamId] = new SortedList<DateTime, Event>();
         }
         @event.CreatedAtUTC = DateTime.UtcNow;
-        _studentsEvents[@event.StreamId].Add(@event.CreatedAtUTC, @event);        
+        _studentsEvents[@event.StreamId].Add(@event.CreatedAtUTC, @event);      
+
+        _students[@event.StreamId] = GetStudent(@event.StreamId)!;
+    }
+    
+    public Student? GetStudentView(Guid studentId)
+    {
+        return _students!.GetValueOrDefault(studentId, null);
     }
     public Student? GetStudent(Guid studentId)
     {
