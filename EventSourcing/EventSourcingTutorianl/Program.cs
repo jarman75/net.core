@@ -58,10 +58,29 @@ var studentUnEnrolled = new StudentUnEnrolled
 studentDatabase.Append(studentUnEnrolled);
 
 var student = studentDatabase.GetStudent(studentId);
-if (student is null) {
+
+
+if (student is null) 
+{
     Console.WriteLine("Student not found");
 } 
 else 
+{
+    WriteStudent(student);
+}
+
+var studentFromView = studentDatabase.GetStudentView(studentId);
+
+if (studentFromView is null) {
+    Console.WriteLine("Student not found");
+} 
+else 
+{
+    WriteStudent(studentFromView);
+}
+
+
+static void WriteStudent(Student student)
 {
     Console.WriteLine("Student: {0}", student.Id);
     Console.WriteLine("Email: {0}", student.Email);
@@ -73,5 +92,3 @@ else
         Console.WriteLine("- {0}", course);
     }    
 }
-
-
