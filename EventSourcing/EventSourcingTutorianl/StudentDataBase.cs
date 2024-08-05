@@ -1,43 +1,103 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
+using Amazon.Runtime;
 using EventSourcingTutorianl.Events;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
 
 namespace EventSourcingTutorianl;
 
 public class StudentDataBase
 {
-    readonly Dictionary<Guid, SortedList<DateTime, Event>> _studentsEvents = [];
-    readonly Dictionary<Guid, Student> _students = [];
-    
-    public void Append(Event @event)
-    {
-        //find student event 
-        var stream = _studentsEvents!.GetValueOrDefault(@event.StreamId, null);
 
-        if (stream is null)
-        {
-            _studentsEvents[@event.StreamId] = new SortedList<DateTime, Event>();
-        }
+
+    private readonly IAmazonDynamoDB _amazonDynamoDb; 
+    private const string TableName = "students";
+    readonly IConfiguration _configuration;
+
+    private static readonly JsonSerializerOptions SeerializerSettings = new()
+    {
+        
+        AllowOutOfOrderMetadataProperties = true       
+        
+    };
+
+    public StudentDataBase(IConfiguration configuration)
+    {
+        //get secrets from project secrets
+        var awsAccessKey = configuration["AWS:AccessKey"];
+        var awsSecretKey = configuration["AWS:SecretKey"];
+
+
+        var awsCredentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
+        _amazonDynamoDb = new AmazonDynamoDBClient(awsCredentials, RegionEndpoint.USEast1);
+        _configuration = configuration;
+    }
+
+    public async Task AppendAsync<T>(T @event) where T : Event
+    {
         @event.CreatedAtUTC = DateTime.UtcNow;
-        _studentsEvents[@event.StreamId].Add(@event.CreatedAtUTC, @event);      
+        var eventAsJson = JsonSerializer.Serialize<Event>(@event);
+        var itemAsDocument = Document.FromJson(eventAsJson);
+        var itemAsAttribute = itemAsDocument.ToAttributeMap();
 
-        _students[@event.StreamId] = GetStudent(@event.StreamId)!;
+        var studentView = await GetStudentAsync(@event.StreamId) ?? new Student();
+        studentView.Apply(@event);
+        var studentViewAsJson = JsonSerializer.Serialize(studentView);
+        var studentViewAsDocument = Document.FromJson(studentViewAsJson);
+        var studentViewAsAttribute = studentViewAsDocument.ToAttributeMap();
+
+        var transactionRequest = new TransactWriteItemsRequest
+        {
+            TransactItems = [
+            
+                new TransactWriteItem
+                {
+                    Put = new Put
+                    {
+                        TableName = TableName,
+                        Item = itemAsAttribute
+                    }
+                },
+                new TransactWriteItem
+                {
+                    Put = new Put
+                    {
+                        TableName = TableName,
+                        Item = studentViewAsAttribute
+                    }
+                }
+            ]
+        };
+
+        await _amazonDynamoDb.TransactWriteItemsAsync(transactionRequest);
     }
-    
-    public Student? GetStudentView(Guid studentId)
+
+    public async Task<Student?> GetStudentAsync(Guid studentId)
     {
-        return _students!.GetValueOrDefault(studentId, null);
-    }
-    public Student? GetStudent(Guid studentId)
-    {
-        if (!_studentsEvents.ContainsKey(studentId))
+        var request = new GetItemRequest
+        {
+            TableName = TableName,
+            Key = new Dictionary<string, AttributeValue>
+            {
+                { "pk", new AttributeValue { S = $"{studentId.ToString()}_view" } },
+                { "sk", new AttributeValue { S = $"{studentId.ToString()}_view" } }
+            }
+        };
+
+        var response = await _amazonDynamoDb.GetItemAsync(request);
+        if (response.Item == null)
         {
             return null;
         }
-        var student = new Student();
-        var studentEvents = _studentsEvents[studentId];
-        foreach (var eventItem in studentEvents)
-        {
-            student.Apply(eventItem.Value);
-        }
-        return student;
+
+        var itemAsDocument = Document.FromAttributeMap(response.Item);
+        var studentViewAsJson = itemAsDocument.ToJson();
+        return JsonSerializer.Deserialize<Student>(studentViewAsJson);
     }
+
+    
+    
 }

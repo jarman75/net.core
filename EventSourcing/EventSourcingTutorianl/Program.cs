@@ -1,65 +1,46 @@
 ﻿using EventSourcingTutorianl;
 using EventSourcingTutorianl.Events;
+using Microsoft.Extensions.Configuration;
 
-var studentDatabase = new StudentDataBase();
+IConfiguration configuration = new ConfigurationBuilder()
+    .AddUserSecrets<Program>()
+    .Build();
+
+var studentDatabase = new StudentDataBase(configuration);
 
 var studentId = Guid.Parse("b4e0a6b7-6b7d-4b6b-8b6b-6b6b6b6b6b6b");
 
-//student created event
 var studentCreated = new StudentCreated
 {
     StudentId = studentId,
     Email = "jhon.doe@example.com", 
     FullName = "John Doe",
-    DateOfBirth = new DateTime(1993, 1, 1)    
+    DateOfBirth = new DateTime(1990, 1, 1)    
 };   
-studentDatabase.Append(studentCreated);
+await studentDatabase.AppendAsync(studentCreated);
 
-//student enrolled event
+
 var studentEnrolled = new StudentEnrolled
 {
     StudentId = studentId,  
     CourseName = "C# Fundamentals"
 };
-studentDatabase.Append(studentEnrolled);
+await studentDatabase.AppendAsync(studentEnrolled);
 
-//student enrolled event
-studentEnrolled = new StudentEnrolled
-{
-    StudentId = studentId,  
-    CourseName = "Eventsourcing Tutorial"
-};
-studentDatabase.Append(studentEnrolled);
 
-//student enrolled event
-studentEnrolled = new StudentEnrolled
-{
-    StudentId = studentId,  
-    CourseName = "Java Fundamentals"
-};
-studentDatabase.Append(studentEnrolled);
 
-//student updated event
 var studentUpdated = new StudentUpdated
 {
     StudentId = studentId,
     Email = "jhon.doe@gmail.com",
     FullName = "John Doe",
-    
+  
 };
-studentDatabase.Append(studentUpdated);
-
-//student unenrolled event
-var studentUnEnrolled = new StudentUnEnrolled
-{
-    StudentId = studentId,  
-    CourseName = "Java Fundamentals"
-};
-studentDatabase.Append(studentUnEnrolled);
-
-var student = studentDatabase.GetStudent(studentId);
+await studentDatabase.AppendAsync(studentUpdated);
 
 
+
+var student = await studentDatabase.GetStudentAsync(studentId);
 if (student is null) 
 {
     Console.WriteLine("Student not found");
@@ -69,15 +50,7 @@ else
     WriteStudent(student);
 }
 
-var studentFromView = studentDatabase.GetStudentView(studentId);
 
-if (studentFromView is null) {
-    Console.WriteLine("Student not found");
-} 
-else 
-{
-    WriteStudent(studentFromView);
-}
 
 
 static void WriteStudent(Student student)
