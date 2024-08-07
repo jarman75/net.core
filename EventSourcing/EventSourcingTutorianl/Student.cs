@@ -5,8 +5,8 @@ namespace EventSourcingTutorianl;
 
 public class Student
 {
-    [JsonPropertyName("pk")] public string Pk => $"{Id.ToString()}_view";
-    [JsonPropertyName("sk")] public string Sk => $"{Id.ToString()}_view";
+    [JsonPropertyName("pk")] public string Pk => $"view_{Id.ToString()}";
+    [JsonPropertyName("sk")] public string Sk => $"view_{Id.ToString()}";
     public Guid Id {get; set;}
     public string FullName {get; set;} = string.Empty;
     public string Email {get; set;} = string.Empty;    

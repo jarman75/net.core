@@ -82,8 +82,8 @@ public class StudentDataBase
             TableName = TableName,
             Key = new Dictionary<string, AttributeValue>
             {
-                { "pk", new AttributeValue { S = $"{studentId.ToString()}_view" } },
-                { "sk", new AttributeValue { S = $"{studentId.ToString()}_view" } }
+                { "pk", new AttributeValue { S = $"view_{studentId.ToString()}" } },
+                { "sk", new AttributeValue { S = $"view_{studentId.ToString()}" } }
             }
         };
 
@@ -98,6 +98,41 @@ public class StudentDataBase
         return JsonSerializer.Deserialize<Student>(studentViewAsJson);
     }
 
-    
+    public async Task<IEnumerable<Student>> GetStudentsAsync()
+    {
+        var students = new List<Student>();
+        
+        var queryRequest = new ScanRequest
+        {
+            TableName = TableName,
+            ScanFilter =  new Dictionary<string, Condition>
+            {
+                { "pk", new Condition
+                    {
+                        ComparisonOperator = ComparisonOperator.BEGINS_WITH,
+                        AttributeValueList = { new AttributeValue { S = "view_" } }
+                    }
+                },
+                { "sk", new Condition
+                    {
+                        ComparisonOperator = ComparisonOperator.BEGINS_WITH,
+                        AttributeValueList = { new AttributeValue { S = "view_" } }
+                    }
+                }
+            }                       
+        };        
+        
+        var response = await _amazonDynamoDb.ScanAsync(queryRequest);
+
+        foreach (var item in response.Items)
+        {
+            var itemAsDocument = Document.FromAttributeMap(item);
+            var studentViewAsJson = itemAsDocument.ToJson();
+            var studentView = JsonSerializer.Deserialize<Student>(studentViewAsJson);
+            students.Add(studentView!);
+        }
+
+        return students;
+    }
     
 }
