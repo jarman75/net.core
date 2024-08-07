@@ -17,12 +17,12 @@ public class StudentDataBase
     private const string TableName = "students";
     readonly IConfiguration _configuration;
 
-    private static readonly JsonSerializerOptions SeerializerSettings = new()
-    {
+    //private static readonly JsonSerializerOptions SeerializerSettings = new()
+    //{
         
-        AllowOutOfOrderMetadataProperties = true       
+    //    AllowOutOfOrderMetadataProperties = true       
         
-    };
+    //};
 
     public StudentDataBase(IConfiguration configuration)
     {
